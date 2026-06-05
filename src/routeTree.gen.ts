@@ -15,6 +15,17 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppWorkersRouteImport } from './routes/app.workers'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppMeasurementsRouteImport } from './routes/app.measurements'
+import { Route as AppMaterialsRouteImport } from './routes/app.materials'
+import { Route as AppFinancesRouteImport } from './routes/app.finances'
+import { Route as AppDocumentsRouteImport } from './routes/app.documents'
+import { Route as AppCrmRouteImport } from './routes/app.crm'
+import { Route as AppCalculatorRouteImport } from './routes/app.calculator'
+import { Route as AppProjectsIndexRouteImport } from './routes/app.projects.index'
+import { Route as AppProjectsIdRouteImport } from './routes/app.projects.$id'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -46,37 +57,157 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppWorkersRoute = AppWorkersRouteImport.update({
+  id: '/workers',
+  path: '/workers',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMeasurementsRoute = AppMeasurementsRouteImport.update({
+  id: '/measurements',
+  path: '/measurements',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMaterialsRoute = AppMaterialsRouteImport.update({
+  id: '/materials',
+  path: '/materials',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFinancesRoute = AppFinancesRouteImport.update({
+  id: '/finances',
+  path: '/finances',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDocumentsRoute = AppDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCrmRoute = AppCrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCalculatorRoute = AppCalculatorRouteImport.update({
+  id: '/calculator',
+  path: '/calculator',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProjectsIdRoute = AppProjectsIdRouteImport.update({
+  id: '/projects/$id',
+  path: '/projects/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/app': typeof AppRoute
+  '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/realisations': typeof RealisationsRoute
   '/services': typeof ServicesRoute
+  '/app/calculator': typeof AppCalculatorRoute
+  '/app/crm': typeof AppCrmRoute
+  '/app/documents': typeof AppDocumentsRoute
+  '/app/finances': typeof AppFinancesRoute
+  '/app/materials': typeof AppMaterialsRoute
+  '/app/measurements': typeof AppMeasurementsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/workers': typeof AppWorkersRoute
+  '/app/': typeof AppIndexRoute
+  '/app/projects/$id': typeof AppProjectsIdRoute
+  '/app/projects/': typeof AppProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/app': typeof AppRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/realisations': typeof RealisationsRoute
   '/services': typeof ServicesRoute
+  '/app/calculator': typeof AppCalculatorRoute
+  '/app/crm': typeof AppCrmRoute
+  '/app/documents': typeof AppDocumentsRoute
+  '/app/finances': typeof AppFinancesRoute
+  '/app/materials': typeof AppMaterialsRoute
+  '/app/measurements': typeof AppMeasurementsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/workers': typeof AppWorkersRoute
+  '/app': typeof AppIndexRoute
+  '/app/projects/$id': typeof AppProjectsIdRoute
+  '/app/projects': typeof AppProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/app': typeof AppRoute
+  '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/realisations': typeof RealisationsRoute
   '/services': typeof ServicesRoute
+  '/app/calculator': typeof AppCalculatorRoute
+  '/app/crm': typeof AppCrmRoute
+  '/app/documents': typeof AppDocumentsRoute
+  '/app/finances': typeof AppFinancesRoute
+  '/app/materials': typeof AppMaterialsRoute
+  '/app/measurements': typeof AppMeasurementsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/workers': typeof AppWorkersRoute
+  '/app/': typeof AppIndexRoute
+  '/app/projects/$id': typeof AppProjectsIdRoute
+  '/app/projects/': typeof AppProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/auth' | '/contact' | '/realisations' | '/services'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/auth'
+    | '/contact'
+    | '/realisations'
+    | '/services'
+    | '/app/calculator'
+    | '/app/crm'
+    | '/app/documents'
+    | '/app/finances'
+    | '/app/materials'
+    | '/app/measurements'
+    | '/app/settings'
+    | '/app/workers'
+    | '/app/'
+    | '/app/projects/$id'
+    | '/app/projects/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app' | '/auth' | '/contact' | '/realisations' | '/services'
+  to:
+    | '/'
+    | '/auth'
+    | '/contact'
+    | '/realisations'
+    | '/services'
+    | '/app/calculator'
+    | '/app/crm'
+    | '/app/documents'
+    | '/app/finances'
+    | '/app/materials'
+    | '/app/measurements'
+    | '/app/settings'
+    | '/app/workers'
+    | '/app'
+    | '/app/projects/$id'
+    | '/app/projects'
   id:
     | '__root__'
     | '/'
@@ -85,11 +216,22 @@ export interface FileRouteTypes {
     | '/contact'
     | '/realisations'
     | '/services'
+    | '/app/calculator'
+    | '/app/crm'
+    | '/app/documents'
+    | '/app/finances'
+    | '/app/materials'
+    | '/app/measurements'
+    | '/app/settings'
+    | '/app/workers'
+    | '/app/'
+    | '/app/projects/$id'
+    | '/app/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AppRoute: typeof AppRoute
+  AppRoute: typeof AppRouteWithChildren
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   RealisationsRoute: typeof RealisationsRoute
@@ -140,12 +282,119 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/workers': {
+      id: '/app/workers'
+      path: '/workers'
+      fullPath: '/app/workers'
+      preLoaderRoute: typeof AppWorkersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/measurements': {
+      id: '/app/measurements'
+      path: '/measurements'
+      fullPath: '/app/measurements'
+      preLoaderRoute: typeof AppMeasurementsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/materials': {
+      id: '/app/materials'
+      path: '/materials'
+      fullPath: '/app/materials'
+      preLoaderRoute: typeof AppMaterialsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/finances': {
+      id: '/app/finances'
+      path: '/finances'
+      fullPath: '/app/finances'
+      preLoaderRoute: typeof AppFinancesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/documents': {
+      id: '/app/documents'
+      path: '/documents'
+      fullPath: '/app/documents'
+      preLoaderRoute: typeof AppDocumentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/crm': {
+      id: '/app/crm'
+      path: '/crm'
+      fullPath: '/app/crm'
+      preLoaderRoute: typeof AppCrmRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/calculator': {
+      id: '/app/calculator'
+      path: '/calculator'
+      fullPath: '/app/calculator'
+      preLoaderRoute: typeof AppCalculatorRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/projects/': {
+      id: '/app/projects/'
+      path: '/projects'
+      fullPath: '/app/projects/'
+      preLoaderRoute: typeof AppProjectsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/projects/$id': {
+      id: '/app/projects/$id'
+      path: '/projects/$id'
+      fullPath: '/app/projects/$id'
+      preLoaderRoute: typeof AppProjectsIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppCalculatorRoute: typeof AppCalculatorRoute
+  AppCrmRoute: typeof AppCrmRoute
+  AppDocumentsRoute: typeof AppDocumentsRoute
+  AppFinancesRoute: typeof AppFinancesRoute
+  AppMaterialsRoute: typeof AppMaterialsRoute
+  AppMeasurementsRoute: typeof AppMeasurementsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppWorkersRoute: typeof AppWorkersRoute
+  AppIndexRoute: typeof AppIndexRoute
+  AppProjectsIdRoute: typeof AppProjectsIdRoute
+  AppProjectsIndexRoute: typeof AppProjectsIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppCalculatorRoute: AppCalculatorRoute,
+  AppCrmRoute: AppCrmRoute,
+  AppDocumentsRoute: AppDocumentsRoute,
+  AppFinancesRoute: AppFinancesRoute,
+  AppMaterialsRoute: AppMaterialsRoute,
+  AppMeasurementsRoute: AppMeasurementsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppWorkersRoute: AppWorkersRoute,
+  AppIndexRoute: AppIndexRoute,
+  AppProjectsIdRoute: AppProjectsIdRoute,
+  AppProjectsIndexRoute: AppProjectsIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AppRoute: AppRoute,
+  AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   RealisationsRoute: RealisationsRoute,
