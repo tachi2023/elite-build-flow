@@ -1,0 +1,13 @@
+{
+  "name": "Élite Placo & Déco | PRIMA BTP",
+  "short_name": "Élite Placo",
+  "description": "Plateforme de gestion premium pour plâtrerie et décoration intérieure.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1E1E1E",
+  "theme_color": "#1E1E1E",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "any", "type": "image/x-icon" }
+  ]
+}
