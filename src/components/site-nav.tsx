@@ -31,6 +31,12 @@ export function SiteNav() {
         </nav>
         <div className="hidden items-center gap-3 md:flex">
           <Link
+            to="/client/auth"
+            className="text-sm font-medium text-muted-foreground hover:text-gold"
+          >
+            Espace client
+          </Link>
+          <Link
             to="/auth"
             className="text-sm font-medium text-muted-foreground hover:text-foreground"
           >
@@ -65,9 +71,16 @@ export function SiteNav() {
               </Link>
             ))}
             <Link
+              to="/client/auth"
+              onClick={() => setOpen(false)}
+              className="mt-2 rounded-md gold-gradient px-3 py-2 text-center text-sm font-semibold text-background"
+            >
+              Espace client
+            </Link>
+            <Link
               to="/auth"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-md hairline-gold px-3 py-2 text-center text-sm font-medium text-gold"
+              className="rounded-md hairline-gold px-3 py-2 text-center text-sm font-medium text-gold"
             >
               Espace pro
             </Link>
