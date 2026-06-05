@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Check, Circle, MapPin, Download, Eye, Share2, Image as ImageIcon, FileText, Wallet,
@@ -21,11 +21,6 @@ export const Route = createFileRoute("/client/projects/$id")({
       <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
     </div>
   ),
-  loader: ({ params }) => {
-    const project = clientProjects.find(p => p.id === params.id);
-    if (!project) throw notFound();
-    return { project };
-  },
 });
 
 type Tab = "timeline" | "gallery" | "documents" | "approvals" | "payments" | "messages";
@@ -39,10 +34,21 @@ const tabs: { key: Tab; label: string; icon: typeof Check }[] = [
 ];
 
 function ProjectDetail() {
-  const { project } = Route.useLoaderData();
+  const { id } = Route.useParams();
+  const project = clientProjects.find(p => p.id === id);
   const [tab, setTab] = useState<Tab>("timeline");
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [compare, setCompare] = useState(false);
+
+  if (!project) {
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-20 text-center">
+        <h1 className="font-display text-2xl">Projet introuvable</h1>
+        <Link to="/client/projects" className="mt-4 inline-block text-gold hover:underline">← Retour à mes projets</Link>
+      </div>
+    );
+  }
+
 
   const docs = clientDocuments.filter(d => d.projectId === project.id);
   const pays = payments.filter(p => p.projectId === project.id);

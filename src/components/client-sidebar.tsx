@@ -6,7 +6,8 @@ import {
 import { Logo } from "./logo";
 import { clientProfile } from "@/lib/client-mock";
 
-export const clientNav = [
+type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
+export const clientNav: NavItem[] = [
   { to: "/client", label: "Tableau de bord", icon: LayoutDashboard, exact: true },
   { to: "/client/projects", label: "Mes projets", icon: FolderKanban },
   { to: "/client/documents", label: "Documents", icon: FileText },
@@ -20,7 +21,7 @@ export const clientNav = [
   { to: "/client/notifications", label: "Notifications", icon: Bell },
   { to: "/client/marketplace", label: "Marketplace", icon: ShoppingBag },
   { to: "/client/profile", label: "Mon profil", icon: User2 },
-] as const;
+];
 
 export function ClientSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
