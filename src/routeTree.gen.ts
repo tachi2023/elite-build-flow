@@ -12,10 +12,24 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as RealisationsRouteImport } from './routes/realisations'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ClientRouteImport } from './routes/client'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ClientIndexRouteImport } from './routes/client.index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as ClientReviewsRouteImport } from './routes/client.reviews'
+import { Route as ClientReferralsRouteImport } from './routes/client.referrals'
+import { Route as ClientProfileRouteImport } from './routes/client.profile'
+import { Route as ClientPaymentsRouteImport } from './routes/client.payments'
+import { Route as ClientNotificationsRouteImport } from './routes/client.notifications'
+import { Route as ClientMessagesRouteImport } from './routes/client.messages'
+import { Route as ClientMarketplaceRouteImport } from './routes/client.marketplace'
+import { Route as ClientInspirationsRouteImport } from './routes/client.inspirations'
+import { Route as ClientDocumentsRouteImport } from './routes/client.documents'
+import { Route as ClientChangesRouteImport } from './routes/client.changes'
+import { Route as ClientAuthRouteImport } from './routes/client.auth'
+import { Route as ClientAppointmentsRouteImport } from './routes/client.appointments'
 import { Route as AppWorkersRouteImport } from './routes/app.workers'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppMeasurementsRouteImport } from './routes/app.measurements'
@@ -24,7 +38,9 @@ import { Route as AppFinancesRouteImport } from './routes/app.finances'
 import { Route as AppDocumentsRouteImport } from './routes/app.documents'
 import { Route as AppCrmRouteImport } from './routes/app.crm'
 import { Route as AppCalculatorRouteImport } from './routes/app.calculator'
+import { Route as ClientProjectsIndexRouteImport } from './routes/client.projects.index'
 import { Route as AppProjectsIndexRouteImport } from './routes/app.projects.index'
+import { Route as ClientProjectsIdRouteImport } from './routes/client.projects.$id'
 import { Route as AppProjectsIdRouteImport } from './routes/app.projects.$id'
 
 const ServicesRoute = ServicesRouteImport.update({
@@ -42,6 +58,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientRoute = ClientRouteImport.update({
+  id: '/client',
+  path: '/client',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -57,10 +78,75 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientIndexRoute = ClientIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ClientRoute,
+} as any)
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppRoute,
+} as any)
+const ClientReviewsRoute = ClientReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientReferralsRoute = ClientReferralsRouteImport.update({
+  id: '/referrals',
+  path: '/referrals',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientProfileRoute = ClientProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientPaymentsRoute = ClientPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientNotificationsRoute = ClientNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientMessagesRoute = ClientMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientMarketplaceRoute = ClientMarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientInspirationsRoute = ClientInspirationsRouteImport.update({
+  id: '/inspirations',
+  path: '/inspirations',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientDocumentsRoute = ClientDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientChangesRoute = ClientChangesRouteImport.update({
+  id: '/changes',
+  path: '/changes',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientAuthRoute = ClientAuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => ClientRoute,
+} as any)
+const ClientAppointmentsRoute = ClientAppointmentsRouteImport.update({
+  id: '/appointments',
+  path: '/appointments',
+  getParentRoute: () => ClientRoute,
 } as any)
 const AppWorkersRoute = AppWorkersRouteImport.update({
   id: '/workers',
@@ -102,10 +188,20 @@ const AppCalculatorRoute = AppCalculatorRouteImport.update({
   path: '/calculator',
   getParentRoute: () => AppRoute,
 } as any)
+const ClientProjectsIndexRoute = ClientProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => ClientRoute,
+} as any)
 const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
   getParentRoute: () => AppRoute,
+} as any)
+const ClientProjectsIdRoute = ClientProjectsIdRouteImport.update({
+  id: '/projects/$id',
+  path: '/projects/$id',
+  getParentRoute: () => ClientRoute,
 } as any)
 const AppProjectsIdRoute = AppProjectsIdRouteImport.update({
   id: '/projects/$id',
@@ -117,6 +213,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRoute
+  '/client': typeof ClientRouteWithChildren
   '/contact': typeof ContactRoute
   '/realisations': typeof RealisationsRoute
   '/services': typeof ServicesRoute
@@ -128,9 +225,24 @@ export interface FileRoutesByFullPath {
   '/app/measurements': typeof AppMeasurementsRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/workers': typeof AppWorkersRoute
+  '/client/appointments': typeof ClientAppointmentsRoute
+  '/client/auth': typeof ClientAuthRoute
+  '/client/changes': typeof ClientChangesRoute
+  '/client/documents': typeof ClientDocumentsRoute
+  '/client/inspirations': typeof ClientInspirationsRoute
+  '/client/marketplace': typeof ClientMarketplaceRoute
+  '/client/messages': typeof ClientMessagesRoute
+  '/client/notifications': typeof ClientNotificationsRoute
+  '/client/payments': typeof ClientPaymentsRoute
+  '/client/profile': typeof ClientProfileRoute
+  '/client/referrals': typeof ClientReferralsRoute
+  '/client/reviews': typeof ClientReviewsRoute
   '/app/': typeof AppIndexRoute
+  '/client/': typeof ClientIndexRoute
   '/app/projects/$id': typeof AppProjectsIdRoute
+  '/client/projects/$id': typeof ClientProjectsIdRoute
   '/app/projects/': typeof AppProjectsIndexRoute
+  '/client/projects/': typeof ClientProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -146,15 +258,31 @@ export interface FileRoutesByTo {
   '/app/measurements': typeof AppMeasurementsRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/workers': typeof AppWorkersRoute
+  '/client/appointments': typeof ClientAppointmentsRoute
+  '/client/auth': typeof ClientAuthRoute
+  '/client/changes': typeof ClientChangesRoute
+  '/client/documents': typeof ClientDocumentsRoute
+  '/client/inspirations': typeof ClientInspirationsRoute
+  '/client/marketplace': typeof ClientMarketplaceRoute
+  '/client/messages': typeof ClientMessagesRoute
+  '/client/notifications': typeof ClientNotificationsRoute
+  '/client/payments': typeof ClientPaymentsRoute
+  '/client/profile': typeof ClientProfileRoute
+  '/client/referrals': typeof ClientReferralsRoute
+  '/client/reviews': typeof ClientReviewsRoute
   '/app': typeof AppIndexRoute
+  '/client': typeof ClientIndexRoute
   '/app/projects/$id': typeof AppProjectsIdRoute
+  '/client/projects/$id': typeof ClientProjectsIdRoute
   '/app/projects': typeof AppProjectsIndexRoute
+  '/client/projects': typeof ClientProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRoute
+  '/client': typeof ClientRouteWithChildren
   '/contact': typeof ContactRoute
   '/realisations': typeof RealisationsRoute
   '/services': typeof ServicesRoute
@@ -166,9 +294,24 @@ export interface FileRoutesById {
   '/app/measurements': typeof AppMeasurementsRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/workers': typeof AppWorkersRoute
+  '/client/appointments': typeof ClientAppointmentsRoute
+  '/client/auth': typeof ClientAuthRoute
+  '/client/changes': typeof ClientChangesRoute
+  '/client/documents': typeof ClientDocumentsRoute
+  '/client/inspirations': typeof ClientInspirationsRoute
+  '/client/marketplace': typeof ClientMarketplaceRoute
+  '/client/messages': typeof ClientMessagesRoute
+  '/client/notifications': typeof ClientNotificationsRoute
+  '/client/payments': typeof ClientPaymentsRoute
+  '/client/profile': typeof ClientProfileRoute
+  '/client/referrals': typeof ClientReferralsRoute
+  '/client/reviews': typeof ClientReviewsRoute
   '/app/': typeof AppIndexRoute
+  '/client/': typeof ClientIndexRoute
   '/app/projects/$id': typeof AppProjectsIdRoute
+  '/client/projects/$id': typeof ClientProjectsIdRoute
   '/app/projects/': typeof AppProjectsIndexRoute
+  '/client/projects/': typeof ClientProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -176,6 +319,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/auth'
+    | '/client'
     | '/contact'
     | '/realisations'
     | '/services'
@@ -187,9 +331,24 @@ export interface FileRouteTypes {
     | '/app/measurements'
     | '/app/settings'
     | '/app/workers'
+    | '/client/appointments'
+    | '/client/auth'
+    | '/client/changes'
+    | '/client/documents'
+    | '/client/inspirations'
+    | '/client/marketplace'
+    | '/client/messages'
+    | '/client/notifications'
+    | '/client/payments'
+    | '/client/profile'
+    | '/client/referrals'
+    | '/client/reviews'
     | '/app/'
+    | '/client/'
     | '/app/projects/$id'
+    | '/client/projects/$id'
     | '/app/projects/'
+    | '/client/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -205,14 +364,30 @@ export interface FileRouteTypes {
     | '/app/measurements'
     | '/app/settings'
     | '/app/workers'
+    | '/client/appointments'
+    | '/client/auth'
+    | '/client/changes'
+    | '/client/documents'
+    | '/client/inspirations'
+    | '/client/marketplace'
+    | '/client/messages'
+    | '/client/notifications'
+    | '/client/payments'
+    | '/client/profile'
+    | '/client/referrals'
+    | '/client/reviews'
     | '/app'
+    | '/client'
     | '/app/projects/$id'
+    | '/client/projects/$id'
     | '/app/projects'
+    | '/client/projects'
   id:
     | '__root__'
     | '/'
     | '/app'
     | '/auth'
+    | '/client'
     | '/contact'
     | '/realisations'
     | '/services'
@@ -224,15 +399,31 @@ export interface FileRouteTypes {
     | '/app/measurements'
     | '/app/settings'
     | '/app/workers'
+    | '/client/appointments'
+    | '/client/auth'
+    | '/client/changes'
+    | '/client/documents'
+    | '/client/inspirations'
+    | '/client/marketplace'
+    | '/client/messages'
+    | '/client/notifications'
+    | '/client/payments'
+    | '/client/profile'
+    | '/client/referrals'
+    | '/client/reviews'
     | '/app/'
+    | '/client/'
     | '/app/projects/$id'
+    | '/client/projects/$id'
     | '/app/projects/'
+    | '/client/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   AuthRoute: typeof AuthRoute
+  ClientRoute: typeof ClientRouteWithChildren
   ContactRoute: typeof ContactRoute
   RealisationsRoute: typeof RealisationsRoute
   ServicesRoute: typeof ServicesRoute
@@ -261,6 +452,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/client': {
+      id: '/client'
+      path: '/client'
+      fullPath: '/client'
+      preLoaderRoute: typeof ClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -282,12 +480,103 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/client/': {
+      id: '/client/'
+      path: '/'
+      fullPath: '/client/'
+      preLoaderRoute: typeof ClientIndexRouteImport
+      parentRoute: typeof ClientRoute
+    }
     '/app/': {
       id: '/app/'
       path: '/'
       fullPath: '/app/'
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/client/reviews': {
+      id: '/client/reviews'
+      path: '/reviews'
+      fullPath: '/client/reviews'
+      preLoaderRoute: typeof ClientReviewsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/referrals': {
+      id: '/client/referrals'
+      path: '/referrals'
+      fullPath: '/client/referrals'
+      preLoaderRoute: typeof ClientReferralsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/profile': {
+      id: '/client/profile'
+      path: '/profile'
+      fullPath: '/client/profile'
+      preLoaderRoute: typeof ClientProfileRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/payments': {
+      id: '/client/payments'
+      path: '/payments'
+      fullPath: '/client/payments'
+      preLoaderRoute: typeof ClientPaymentsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/notifications': {
+      id: '/client/notifications'
+      path: '/notifications'
+      fullPath: '/client/notifications'
+      preLoaderRoute: typeof ClientNotificationsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/messages': {
+      id: '/client/messages'
+      path: '/messages'
+      fullPath: '/client/messages'
+      preLoaderRoute: typeof ClientMessagesRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/marketplace': {
+      id: '/client/marketplace'
+      path: '/marketplace'
+      fullPath: '/client/marketplace'
+      preLoaderRoute: typeof ClientMarketplaceRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/inspirations': {
+      id: '/client/inspirations'
+      path: '/inspirations'
+      fullPath: '/client/inspirations'
+      preLoaderRoute: typeof ClientInspirationsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/documents': {
+      id: '/client/documents'
+      path: '/documents'
+      fullPath: '/client/documents'
+      preLoaderRoute: typeof ClientDocumentsRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/changes': {
+      id: '/client/changes'
+      path: '/changes'
+      fullPath: '/client/changes'
+      preLoaderRoute: typeof ClientChangesRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/auth': {
+      id: '/client/auth'
+      path: '/auth'
+      fullPath: '/client/auth'
+      preLoaderRoute: typeof ClientAuthRouteImport
+      parentRoute: typeof ClientRoute
+    }
+    '/client/appointments': {
+      id: '/client/appointments'
+      path: '/appointments'
+      fullPath: '/client/appointments'
+      preLoaderRoute: typeof ClientAppointmentsRouteImport
+      parentRoute: typeof ClientRoute
     }
     '/app/workers': {
       id: '/app/workers'
@@ -345,12 +634,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCalculatorRouteImport
       parentRoute: typeof AppRoute
     }
+    '/client/projects/': {
+      id: '/client/projects/'
+      path: '/projects'
+      fullPath: '/client/projects/'
+      preLoaderRoute: typeof ClientProjectsIndexRouteImport
+      parentRoute: typeof ClientRoute
+    }
     '/app/projects/': {
       id: '/app/projects/'
       path: '/projects'
       fullPath: '/app/projects/'
       preLoaderRoute: typeof AppProjectsIndexRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/client/projects/$id': {
+      id: '/client/projects/$id'
+      path: '/projects/$id'
+      fullPath: '/client/projects/$id'
+      preLoaderRoute: typeof ClientProjectsIdRouteImport
+      parentRoute: typeof ClientRoute
     }
     '/app/projects/$id': {
       id: '/app/projects/$id'
@@ -392,10 +695,50 @@ const AppRouteChildren: AppRouteChildren = {
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
+interface ClientRouteChildren {
+  ClientAppointmentsRoute: typeof ClientAppointmentsRoute
+  ClientAuthRoute: typeof ClientAuthRoute
+  ClientChangesRoute: typeof ClientChangesRoute
+  ClientDocumentsRoute: typeof ClientDocumentsRoute
+  ClientInspirationsRoute: typeof ClientInspirationsRoute
+  ClientMarketplaceRoute: typeof ClientMarketplaceRoute
+  ClientMessagesRoute: typeof ClientMessagesRoute
+  ClientNotificationsRoute: typeof ClientNotificationsRoute
+  ClientPaymentsRoute: typeof ClientPaymentsRoute
+  ClientProfileRoute: typeof ClientProfileRoute
+  ClientReferralsRoute: typeof ClientReferralsRoute
+  ClientReviewsRoute: typeof ClientReviewsRoute
+  ClientIndexRoute: typeof ClientIndexRoute
+  ClientProjectsIdRoute: typeof ClientProjectsIdRoute
+  ClientProjectsIndexRoute: typeof ClientProjectsIndexRoute
+}
+
+const ClientRouteChildren: ClientRouteChildren = {
+  ClientAppointmentsRoute: ClientAppointmentsRoute,
+  ClientAuthRoute: ClientAuthRoute,
+  ClientChangesRoute: ClientChangesRoute,
+  ClientDocumentsRoute: ClientDocumentsRoute,
+  ClientInspirationsRoute: ClientInspirationsRoute,
+  ClientMarketplaceRoute: ClientMarketplaceRoute,
+  ClientMessagesRoute: ClientMessagesRoute,
+  ClientNotificationsRoute: ClientNotificationsRoute,
+  ClientPaymentsRoute: ClientPaymentsRoute,
+  ClientProfileRoute: ClientProfileRoute,
+  ClientReferralsRoute: ClientReferralsRoute,
+  ClientReviewsRoute: ClientReviewsRoute,
+  ClientIndexRoute: ClientIndexRoute,
+  ClientProjectsIdRoute: ClientProjectsIdRoute,
+  ClientProjectsIndexRoute: ClientProjectsIndexRoute,
+}
+
+const ClientRouteWithChildren =
+  ClientRoute._addFileChildren(ClientRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRoute,
+  ClientRoute: ClientRouteWithChildren,
   ContactRoute: ContactRoute,
   RealisationsRoute: RealisationsRoute,
   ServicesRoute: ServicesRoute,
