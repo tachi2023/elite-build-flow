@@ -13,7 +13,11 @@ import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminDashboardRouteImport } from './routes/_admin.dashboard'
 import { Route as AdminSubmissionsIndexRouteImport } from './routes/_admin.submissions.index'
+import { Route as AdminRefundsIndexRouteImport } from './routes/_admin.refunds.index'
+import { Route as AdminOrdersIndexRouteImport } from './routes/_admin.orders.index'
 import { Route as AdminSubmissionsIdRouteImport } from './routes/_admin.submissions.$id'
+import { Route as AdminRefundsIdRouteImport } from './routes/_admin.refunds.$id'
+import { Route as AdminOrdersIdRouteImport } from './routes/_admin.orders.$id'
 import { Route as AdminSubmissionsIdPublishRouteImport } from './routes/_admin.submissions.$id.publish'
 
 const AdminRoute = AdminRouteImport.update({
@@ -35,9 +39,29 @@ const AdminSubmissionsIndexRoute = AdminSubmissionsIndexRouteImport.update({
   path: '/submissions/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminRefundsIndexRoute = AdminRefundsIndexRouteImport.update({
+  id: '/refunds/',
+  path: '/refunds/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersIndexRoute = AdminOrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminSubmissionsIdRoute = AdminSubmissionsIdRouteImport.update({
   id: '/submissions/$id',
   path: '/submissions/$id',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminRefundsIdRoute = AdminRefundsIdRouteImport.update({
+  id: '/refunds/$id',
+  path: '/refunds/$id',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersIdRoute = AdminOrdersIdRouteImport.update({
+  id: '/orders/$id',
+  path: '/orders/$id',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminSubmissionsIdPublishRoute =
@@ -50,14 +74,22 @@ const AdminSubmissionsIdPublishRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof AdminDashboardRoute
+  '/orders/$id': typeof AdminOrdersIdRoute
+  '/refunds/$id': typeof AdminRefundsIdRoute
   '/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/orders/': typeof AdminOrdersIndexRoute
+  '/refunds/': typeof AdminRefundsIndexRoute
   '/submissions/': typeof AdminSubmissionsIndexRoute
   '/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof AdminDashboardRoute
+  '/orders/$id': typeof AdminOrdersIdRoute
+  '/refunds/$id': typeof AdminRefundsIdRoute
   '/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/orders': typeof AdminOrdersIndexRoute
+  '/refunds': typeof AdminRefundsIndexRoute
   '/submissions': typeof AdminSubmissionsIndexRoute
   '/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
@@ -66,7 +98,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_admin': typeof AdminRouteWithChildren
   '/_admin/dashboard': typeof AdminDashboardRoute
+  '/_admin/orders/$id': typeof AdminOrdersIdRoute
+  '/_admin/refunds/$id': typeof AdminRefundsIdRoute
   '/_admin/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/_admin/orders/': typeof AdminOrdersIndexRoute
+  '/_admin/refunds/': typeof AdminRefundsIndexRoute
   '/_admin/submissions/': typeof AdminSubmissionsIndexRoute
   '/_admin/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
@@ -75,14 +111,22 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/orders/$id'
+    | '/refunds/$id'
     | '/submissions/$id'
+    | '/orders/'
+    | '/refunds/'
     | '/submissions/'
     | '/submissions/$id/publish'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/dashboard'
+    | '/orders/$id'
+    | '/refunds/$id'
     | '/submissions/$id'
+    | '/orders'
+    | '/refunds'
     | '/submissions'
     | '/submissions/$id/publish'
   id:
@@ -90,7 +134,11 @@ export interface FileRouteTypes {
     | '/'
     | '/_admin'
     | '/_admin/dashboard'
+    | '/_admin/orders/$id'
+    | '/_admin/refunds/$id'
     | '/_admin/submissions/$id'
+    | '/_admin/orders/'
+    | '/_admin/refunds/'
     | '/_admin/submissions/'
     | '/_admin/submissions/$id/publish'
   fileRoutesById: FileRoutesById
@@ -130,11 +178,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSubmissionsIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/_admin/refunds/': {
+      id: '/_admin/refunds/'
+      path: '/refunds'
+      fullPath: '/refunds/'
+      preLoaderRoute: typeof AdminRefundsIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/orders/': {
+      id: '/_admin/orders/'
+      path: '/orders'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof AdminOrdersIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/_admin/submissions/$id': {
       id: '/_admin/submissions/$id'
       path: '/submissions/$id'
       fullPath: '/submissions/$id'
       preLoaderRoute: typeof AdminSubmissionsIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/refunds/$id': {
+      id: '/_admin/refunds/$id'
+      path: '/refunds/$id'
+      fullPath: '/refunds/$id'
+      preLoaderRoute: typeof AdminRefundsIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/orders/$id': {
+      id: '/_admin/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/orders/$id'
+      preLoaderRoute: typeof AdminOrdersIdRouteImport
       parentRoute: typeof AdminRoute
     }
     '/_admin/submissions/$id/publish': {
@@ -160,13 +236,21 @@ const AdminSubmissionsIdRouteWithChildren =
 
 interface AdminRouteChildren {
   AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminOrdersIdRoute: typeof AdminOrdersIdRoute
+  AdminRefundsIdRoute: typeof AdminRefundsIdRoute
   AdminSubmissionsIdRoute: typeof AdminSubmissionsIdRouteWithChildren
+  AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
+  AdminRefundsIndexRoute: typeof AdminRefundsIndexRoute
   AdminSubmissionsIndexRoute: typeof AdminSubmissionsIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminDashboardRoute: AdminDashboardRoute,
+  AdminOrdersIdRoute: AdminOrdersIdRoute,
+  AdminRefundsIdRoute: AdminRefundsIdRoute,
   AdminSubmissionsIdRoute: AdminSubmissionsIdRouteWithChildren,
+  AdminOrdersIndexRoute: AdminOrdersIndexRoute,
+  AdminRefundsIndexRoute: AdminRefundsIndexRoute,
   AdminSubmissionsIndexRoute: AdminSubmissionsIndexRoute,
 }
 
