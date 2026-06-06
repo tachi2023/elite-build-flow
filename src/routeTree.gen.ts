@@ -9,68 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ServicesRouteImport } from './routes/services'
-import { Route as RealisationsRouteImport } from './routes/realisations'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as ClientRouteImport } from './routes/client'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AppRouteImport } from './routes/app'
+import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ClientIndexRouteImport } from './routes/client.index'
-import { Route as AppIndexRouteImport } from './routes/app.index'
-import { Route as ClientReviewsRouteImport } from './routes/client.reviews'
-import { Route as ClientReferralsRouteImport } from './routes/client.referrals'
-import { Route as ClientProfileRouteImport } from './routes/client.profile'
-import { Route as ClientPaymentsRouteImport } from './routes/client.payments'
-import { Route as ClientNotificationsRouteImport } from './routes/client.notifications'
-import { Route as ClientMessagesRouteImport } from './routes/client.messages'
-import { Route as ClientMarketplaceRouteImport } from './routes/client.marketplace'
-import { Route as ClientInspirationsRouteImport } from './routes/client.inspirations'
-import { Route as ClientDocumentsRouteImport } from './routes/client.documents'
-import { Route as ClientChangesRouteImport } from './routes/client.changes'
-import { Route as ClientAuthRouteImport } from './routes/client.auth'
-import { Route as ClientAppointmentsRouteImport } from './routes/client.appointments'
-import { Route as AppWorkersRouteImport } from './routes/app.workers'
-import { Route as AppSettingsRouteImport } from './routes/app.settings'
-import { Route as AppMeasurementsRouteImport } from './routes/app.measurements'
-import { Route as AppMaterialsRouteImport } from './routes/app.materials'
-import { Route as AppFinancesRouteImport } from './routes/app.finances'
-import { Route as AppDocumentsRouteImport } from './routes/app.documents'
-import { Route as AppCrmRouteImport } from './routes/app.crm'
-import { Route as AppCalculatorRouteImport } from './routes/app.calculator'
-import { Route as ClientProjectsIndexRouteImport } from './routes/client.projects.index'
-import { Route as AppProjectsIndexRouteImport } from './routes/app.projects.index'
-import { Route as ClientProjectsIdRouteImport } from './routes/client.projects.$id'
-import { Route as AppProjectsIdRouteImport } from './routes/app.projects.$id'
+import { Route as AdminImmediateRouteImport } from './routes/_admin.immediate'
+import { Route as AdminFinanceRouteImport } from './routes/_admin.finance'
+import { Route as AdminDeliveriesRouteImport } from './routes/_admin.deliveries'
+import { Route as AdminDashboardRouteImport } from './routes/_admin.dashboard'
+import { Route as AdminCatalogueRouteImport } from './routes/_admin.catalogue'
+import { Route as AdminAnalyticsRouteImport } from './routes/_admin.analytics'
+import { Route as AdminVendorsIndexRouteImport } from './routes/_admin.vendors.index'
+import { Route as AdminSubmissionsIndexRouteImport } from './routes/_admin.submissions.index'
+import { Route as AdminRefundsIndexRouteImport } from './routes/_admin.refunds.index'
+import { Route as AdminOrdersIndexRouteImport } from './routes/_admin.orders.index'
+import { Route as AdminVendorsIdRouteImport } from './routes/_admin.vendors.$id'
+import { Route as AdminSubmissionsIdRouteImport } from './routes/_admin.submissions.$id'
+import { Route as AdminRefundsIdRouteImport } from './routes/_admin.refunds.$id'
+import { Route as AdminOrdersIdRouteImport } from './routes/_admin.orders.$id'
+import { Route as AdminSubmissionsIdPublishRouteImport } from './routes/_admin.submissions.$id.publish'
 
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RealisationsRoute = RealisationsRouteImport.update({
-  id: '/realisations',
-  path: '/realisations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ClientRoute = ClientRouteImport.update({
-  id: '/client',
-  path: '/client',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppRoute = AppRouteImport.update({
-  id: '/app',
-  path: '/app',
+const AdminRoute = AdminRouteImport.update({
+  id: '/_admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -78,399 +36,209 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ClientIndexRoute = ClientIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => ClientRoute,
+const AdminImmediateRoute = AdminImmediateRouteImport.update({
+  id: '/immediate',
+  path: '/immediate',
+  getParentRoute: () => AdminRoute,
 } as any)
-const AppIndexRoute = AppIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AppRoute,
+const AdminFinanceRoute = AdminFinanceRouteImport.update({
+  id: '/finance',
+  path: '/finance',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientReviewsRoute = ClientReviewsRouteImport.update({
-  id: '/reviews',
-  path: '/reviews',
-  getParentRoute: () => ClientRoute,
+const AdminDeliveriesRoute = AdminDeliveriesRouteImport.update({
+  id: '/deliveries',
+  path: '/deliveries',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientReferralsRoute = ClientReferralsRouteImport.update({
-  id: '/referrals',
-  path: '/referrals',
-  getParentRoute: () => ClientRoute,
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientProfileRoute = ClientProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => ClientRoute,
+const AdminCatalogueRoute = AdminCatalogueRouteImport.update({
+  id: '/catalogue',
+  path: '/catalogue',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientPaymentsRoute = ClientPaymentsRouteImport.update({
-  id: '/payments',
-  path: '/payments',
-  getParentRoute: () => ClientRoute,
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientNotificationsRoute = ClientNotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => ClientRoute,
+const AdminVendorsIndexRoute = AdminVendorsIndexRouteImport.update({
+  id: '/vendors/',
+  path: '/vendors/',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientMessagesRoute = ClientMessagesRouteImport.update({
-  id: '/messages',
-  path: '/messages',
-  getParentRoute: () => ClientRoute,
+const AdminSubmissionsIndexRoute = AdminSubmissionsIndexRouteImport.update({
+  id: '/submissions/',
+  path: '/submissions/',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientMarketplaceRoute = ClientMarketplaceRouteImport.update({
-  id: '/marketplace',
-  path: '/marketplace',
-  getParentRoute: () => ClientRoute,
+const AdminRefundsIndexRoute = AdminRefundsIndexRouteImport.update({
+  id: '/refunds/',
+  path: '/refunds/',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientInspirationsRoute = ClientInspirationsRouteImport.update({
-  id: '/inspirations',
-  path: '/inspirations',
-  getParentRoute: () => ClientRoute,
+const AdminOrdersIndexRoute = AdminOrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientDocumentsRoute = ClientDocumentsRouteImport.update({
-  id: '/documents',
-  path: '/documents',
-  getParentRoute: () => ClientRoute,
+const AdminVendorsIdRoute = AdminVendorsIdRouteImport.update({
+  id: '/vendors/$id',
+  path: '/vendors/$id',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientChangesRoute = ClientChangesRouteImport.update({
-  id: '/changes',
-  path: '/changes',
-  getParentRoute: () => ClientRoute,
+const AdminSubmissionsIdRoute = AdminSubmissionsIdRouteImport.update({
+  id: '/submissions/$id',
+  path: '/submissions/$id',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientAuthRoute = ClientAuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => ClientRoute,
+const AdminRefundsIdRoute = AdminRefundsIdRouteImport.update({
+  id: '/refunds/$id',
+  path: '/refunds/$id',
+  getParentRoute: () => AdminRoute,
 } as any)
-const ClientAppointmentsRoute = ClientAppointmentsRouteImport.update({
-  id: '/appointments',
-  path: '/appointments',
-  getParentRoute: () => ClientRoute,
+const AdminOrdersIdRoute = AdminOrdersIdRouteImport.update({
+  id: '/orders/$id',
+  path: '/orders/$id',
+  getParentRoute: () => AdminRoute,
 } as any)
-const AppWorkersRoute = AppWorkersRouteImport.update({
-  id: '/workers',
-  path: '/workers',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppSettingsRoute = AppSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppMeasurementsRoute = AppMeasurementsRouteImport.update({
-  id: '/measurements',
-  path: '/measurements',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppMaterialsRoute = AppMaterialsRouteImport.update({
-  id: '/materials',
-  path: '/materials',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppFinancesRoute = AppFinancesRouteImport.update({
-  id: '/finances',
-  path: '/finances',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppDocumentsRoute = AppDocumentsRouteImport.update({
-  id: '/documents',
-  path: '/documents',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppCrmRoute = AppCrmRouteImport.update({
-  id: '/crm',
-  path: '/crm',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppCalculatorRoute = AppCalculatorRouteImport.update({
-  id: '/calculator',
-  path: '/calculator',
-  getParentRoute: () => AppRoute,
-} as any)
-const ClientProjectsIndexRoute = ClientProjectsIndexRouteImport.update({
-  id: '/projects/',
-  path: '/projects/',
-  getParentRoute: () => ClientRoute,
-} as any)
-const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
-  id: '/projects/',
-  path: '/projects/',
-  getParentRoute: () => AppRoute,
-} as any)
-const ClientProjectsIdRoute = ClientProjectsIdRouteImport.update({
-  id: '/projects/$id',
-  path: '/projects/$id',
-  getParentRoute: () => ClientRoute,
-} as any)
-const AppProjectsIdRoute = AppProjectsIdRouteImport.update({
-  id: '/projects/$id',
-  path: '/projects/$id',
-  getParentRoute: () => AppRoute,
-} as any)
+const AdminSubmissionsIdPublishRoute =
+  AdminSubmissionsIdPublishRouteImport.update({
+    id: '/publish',
+    path: '/publish',
+    getParentRoute: () => AdminSubmissionsIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/app': typeof AppRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/client': typeof ClientRouteWithChildren
-  '/contact': typeof ContactRoute
-  '/realisations': typeof RealisationsRoute
-  '/services': typeof ServicesRoute
-  '/app/calculator': typeof AppCalculatorRoute
-  '/app/crm': typeof AppCrmRoute
-  '/app/documents': typeof AppDocumentsRoute
-  '/app/finances': typeof AppFinancesRoute
-  '/app/materials': typeof AppMaterialsRoute
-  '/app/measurements': typeof AppMeasurementsRoute
-  '/app/settings': typeof AppSettingsRoute
-  '/app/workers': typeof AppWorkersRoute
-  '/client/appointments': typeof ClientAppointmentsRoute
-  '/client/auth': typeof ClientAuthRoute
-  '/client/changes': typeof ClientChangesRoute
-  '/client/documents': typeof ClientDocumentsRoute
-  '/client/inspirations': typeof ClientInspirationsRoute
-  '/client/marketplace': typeof ClientMarketplaceRoute
-  '/client/messages': typeof ClientMessagesRoute
-  '/client/notifications': typeof ClientNotificationsRoute
-  '/client/payments': typeof ClientPaymentsRoute
-  '/client/profile': typeof ClientProfileRoute
-  '/client/referrals': typeof ClientReferralsRoute
-  '/client/reviews': typeof ClientReviewsRoute
-  '/app/': typeof AppIndexRoute
-  '/client/': typeof ClientIndexRoute
-  '/app/projects/$id': typeof AppProjectsIdRoute
-  '/client/projects/$id': typeof ClientProjectsIdRoute
-  '/app/projects/': typeof AppProjectsIndexRoute
-  '/client/projects/': typeof ClientProjectsIndexRoute
+  '/analytics': typeof AdminAnalyticsRoute
+  '/catalogue': typeof AdminCatalogueRoute
+  '/dashboard': typeof AdminDashboardRoute
+  '/deliveries': typeof AdminDeliveriesRoute
+  '/finance': typeof AdminFinanceRoute
+  '/immediate': typeof AdminImmediateRoute
+  '/orders/$id': typeof AdminOrdersIdRoute
+  '/refunds/$id': typeof AdminRefundsIdRoute
+  '/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/vendors/$id': typeof AdminVendorsIdRoute
+  '/orders/': typeof AdminOrdersIndexRoute
+  '/refunds/': typeof AdminRefundsIndexRoute
+  '/submissions/': typeof AdminSubmissionsIndexRoute
+  '/vendors/': typeof AdminVendorsIndexRoute
+  '/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/auth': typeof AuthRoute
-  '/contact': typeof ContactRoute
-  '/realisations': typeof RealisationsRoute
-  '/services': typeof ServicesRoute
-  '/app/calculator': typeof AppCalculatorRoute
-  '/app/crm': typeof AppCrmRoute
-  '/app/documents': typeof AppDocumentsRoute
-  '/app/finances': typeof AppFinancesRoute
-  '/app/materials': typeof AppMaterialsRoute
-  '/app/measurements': typeof AppMeasurementsRoute
-  '/app/settings': typeof AppSettingsRoute
-  '/app/workers': typeof AppWorkersRoute
-  '/client/appointments': typeof ClientAppointmentsRoute
-  '/client/auth': typeof ClientAuthRoute
-  '/client/changes': typeof ClientChangesRoute
-  '/client/documents': typeof ClientDocumentsRoute
-  '/client/inspirations': typeof ClientInspirationsRoute
-  '/client/marketplace': typeof ClientMarketplaceRoute
-  '/client/messages': typeof ClientMessagesRoute
-  '/client/notifications': typeof ClientNotificationsRoute
-  '/client/payments': typeof ClientPaymentsRoute
-  '/client/profile': typeof ClientProfileRoute
-  '/client/referrals': typeof ClientReferralsRoute
-  '/client/reviews': typeof ClientReviewsRoute
-  '/app': typeof AppIndexRoute
-  '/client': typeof ClientIndexRoute
-  '/app/projects/$id': typeof AppProjectsIdRoute
-  '/client/projects/$id': typeof ClientProjectsIdRoute
-  '/app/projects': typeof AppProjectsIndexRoute
-  '/client/projects': typeof ClientProjectsIndexRoute
+  '/analytics': typeof AdminAnalyticsRoute
+  '/catalogue': typeof AdminCatalogueRoute
+  '/dashboard': typeof AdminDashboardRoute
+  '/deliveries': typeof AdminDeliveriesRoute
+  '/finance': typeof AdminFinanceRoute
+  '/immediate': typeof AdminImmediateRoute
+  '/orders/$id': typeof AdminOrdersIdRoute
+  '/refunds/$id': typeof AdminRefundsIdRoute
+  '/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/vendors/$id': typeof AdminVendorsIdRoute
+  '/orders': typeof AdminOrdersIndexRoute
+  '/refunds': typeof AdminRefundsIndexRoute
+  '/submissions': typeof AdminSubmissionsIndexRoute
+  '/vendors': typeof AdminVendorsIndexRoute
+  '/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/app': typeof AppRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/client': typeof ClientRouteWithChildren
-  '/contact': typeof ContactRoute
-  '/realisations': typeof RealisationsRoute
-  '/services': typeof ServicesRoute
-  '/app/calculator': typeof AppCalculatorRoute
-  '/app/crm': typeof AppCrmRoute
-  '/app/documents': typeof AppDocumentsRoute
-  '/app/finances': typeof AppFinancesRoute
-  '/app/materials': typeof AppMaterialsRoute
-  '/app/measurements': typeof AppMeasurementsRoute
-  '/app/settings': typeof AppSettingsRoute
-  '/app/workers': typeof AppWorkersRoute
-  '/client/appointments': typeof ClientAppointmentsRoute
-  '/client/auth': typeof ClientAuthRoute
-  '/client/changes': typeof ClientChangesRoute
-  '/client/documents': typeof ClientDocumentsRoute
-  '/client/inspirations': typeof ClientInspirationsRoute
-  '/client/marketplace': typeof ClientMarketplaceRoute
-  '/client/messages': typeof ClientMessagesRoute
-  '/client/notifications': typeof ClientNotificationsRoute
-  '/client/payments': typeof ClientPaymentsRoute
-  '/client/profile': typeof ClientProfileRoute
-  '/client/referrals': typeof ClientReferralsRoute
-  '/client/reviews': typeof ClientReviewsRoute
-  '/app/': typeof AppIndexRoute
-  '/client/': typeof ClientIndexRoute
-  '/app/projects/$id': typeof AppProjectsIdRoute
-  '/client/projects/$id': typeof ClientProjectsIdRoute
-  '/app/projects/': typeof AppProjectsIndexRoute
-  '/client/projects/': typeof ClientProjectsIndexRoute
+  '/_admin': typeof AdminRouteWithChildren
+  '/_admin/analytics': typeof AdminAnalyticsRoute
+  '/_admin/catalogue': typeof AdminCatalogueRoute
+  '/_admin/dashboard': typeof AdminDashboardRoute
+  '/_admin/deliveries': typeof AdminDeliveriesRoute
+  '/_admin/finance': typeof AdminFinanceRoute
+  '/_admin/immediate': typeof AdminImmediateRoute
+  '/_admin/orders/$id': typeof AdminOrdersIdRoute
+  '/_admin/refunds/$id': typeof AdminRefundsIdRoute
+  '/_admin/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/_admin/vendors/$id': typeof AdminVendorsIdRoute
+  '/_admin/orders/': typeof AdminOrdersIndexRoute
+  '/_admin/refunds/': typeof AdminRefundsIndexRoute
+  '/_admin/submissions/': typeof AdminSubmissionsIndexRoute
+  '/_admin/vendors/': typeof AdminVendorsIndexRoute
+  '/_admin/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/app'
-    | '/auth'
-    | '/client'
-    | '/contact'
-    | '/realisations'
-    | '/services'
-    | '/app/calculator'
-    | '/app/crm'
-    | '/app/documents'
-    | '/app/finances'
-    | '/app/materials'
-    | '/app/measurements'
-    | '/app/settings'
-    | '/app/workers'
-    | '/client/appointments'
-    | '/client/auth'
-    | '/client/changes'
-    | '/client/documents'
-    | '/client/inspirations'
-    | '/client/marketplace'
-    | '/client/messages'
-    | '/client/notifications'
-    | '/client/payments'
-    | '/client/profile'
-    | '/client/referrals'
-    | '/client/reviews'
-    | '/app/'
-    | '/client/'
-    | '/app/projects/$id'
-    | '/client/projects/$id'
-    | '/app/projects/'
-    | '/client/projects/'
+    | '/analytics'
+    | '/catalogue'
+    | '/dashboard'
+    | '/deliveries'
+    | '/finance'
+    | '/immediate'
+    | '/orders/$id'
+    | '/refunds/$id'
+    | '/submissions/$id'
+    | '/vendors/$id'
+    | '/orders/'
+    | '/refunds/'
+    | '/submissions/'
+    | '/vendors/'
+    | '/submissions/$id/publish'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/auth'
-    | '/contact'
-    | '/realisations'
-    | '/services'
-    | '/app/calculator'
-    | '/app/crm'
-    | '/app/documents'
-    | '/app/finances'
-    | '/app/materials'
-    | '/app/measurements'
-    | '/app/settings'
-    | '/app/workers'
-    | '/client/appointments'
-    | '/client/auth'
-    | '/client/changes'
-    | '/client/documents'
-    | '/client/inspirations'
-    | '/client/marketplace'
-    | '/client/messages'
-    | '/client/notifications'
-    | '/client/payments'
-    | '/client/profile'
-    | '/client/referrals'
-    | '/client/reviews'
-    | '/app'
-    | '/client'
-    | '/app/projects/$id'
-    | '/client/projects/$id'
-    | '/app/projects'
-    | '/client/projects'
+    | '/analytics'
+    | '/catalogue'
+    | '/dashboard'
+    | '/deliveries'
+    | '/finance'
+    | '/immediate'
+    | '/orders/$id'
+    | '/refunds/$id'
+    | '/submissions/$id'
+    | '/vendors/$id'
+    | '/orders'
+    | '/refunds'
+    | '/submissions'
+    | '/vendors'
+    | '/submissions/$id/publish'
   id:
     | '__root__'
     | '/'
-    | '/app'
-    | '/auth'
-    | '/client'
-    | '/contact'
-    | '/realisations'
-    | '/services'
-    | '/app/calculator'
-    | '/app/crm'
-    | '/app/documents'
-    | '/app/finances'
-    | '/app/materials'
-    | '/app/measurements'
-    | '/app/settings'
-    | '/app/workers'
-    | '/client/appointments'
-    | '/client/auth'
-    | '/client/changes'
-    | '/client/documents'
-    | '/client/inspirations'
-    | '/client/marketplace'
-    | '/client/messages'
-    | '/client/notifications'
-    | '/client/payments'
-    | '/client/profile'
-    | '/client/referrals'
-    | '/client/reviews'
-    | '/app/'
-    | '/client/'
-    | '/app/projects/$id'
-    | '/client/projects/$id'
-    | '/app/projects/'
-    | '/client/projects/'
+    | '/_admin'
+    | '/_admin/analytics'
+    | '/_admin/catalogue'
+    | '/_admin/dashboard'
+    | '/_admin/deliveries'
+    | '/_admin/finance'
+    | '/_admin/immediate'
+    | '/_admin/orders/$id'
+    | '/_admin/refunds/$id'
+    | '/_admin/submissions/$id'
+    | '/_admin/vendors/$id'
+    | '/_admin/orders/'
+    | '/_admin/refunds/'
+    | '/_admin/submissions/'
+    | '/_admin/vendors/'
+    | '/_admin/submissions/$id/publish'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AppRoute: typeof AppRouteWithChildren
-  AuthRoute: typeof AuthRoute
-  ClientRoute: typeof ClientRouteWithChildren
-  ContactRoute: typeof ContactRoute
-  RealisationsRoute: typeof RealisationsRoute
-  ServicesRoute: typeof ServicesRoute
+  AdminRoute: typeof AdminRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/realisations': {
-      id: '/realisations'
-      path: '/realisations'
-      fullPath: '/realisations'
-      preLoaderRoute: typeof RealisationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/client': {
-      id: '/client'
-      path: '/client'
-      fullPath: '/client'
-      preLoaderRoute: typeof ClientRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app': {
-      id: '/app'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppRouteImport
+    '/_admin': {
+      id: '/_admin'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -480,279 +248,165 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/client/': {
-      id: '/client/'
-      path: '/'
-      fullPath: '/client/'
-      preLoaderRoute: typeof ClientIndexRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/immediate': {
+      id: '/_admin/immediate'
+      path: '/immediate'
+      fullPath: '/immediate'
+      preLoaderRoute: typeof AdminImmediateRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/app/': {
-      id: '/app/'
-      path: '/'
-      fullPath: '/app/'
-      preLoaderRoute: typeof AppIndexRouteImport
-      parentRoute: typeof AppRoute
+    '/_admin/finance': {
+      id: '/_admin/finance'
+      path: '/finance'
+      fullPath: '/finance'
+      preLoaderRoute: typeof AdminFinanceRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/reviews': {
-      id: '/client/reviews'
-      path: '/reviews'
-      fullPath: '/client/reviews'
-      preLoaderRoute: typeof ClientReviewsRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/deliveries': {
+      id: '/_admin/deliveries'
+      path: '/deliveries'
+      fullPath: '/deliveries'
+      preLoaderRoute: typeof AdminDeliveriesRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/referrals': {
-      id: '/client/referrals'
-      path: '/referrals'
-      fullPath: '/client/referrals'
-      preLoaderRoute: typeof ClientReferralsRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/dashboard': {
+      id: '/_admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/profile': {
-      id: '/client/profile'
-      path: '/profile'
-      fullPath: '/client/profile'
-      preLoaderRoute: typeof ClientProfileRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/catalogue': {
+      id: '/_admin/catalogue'
+      path: '/catalogue'
+      fullPath: '/catalogue'
+      preLoaderRoute: typeof AdminCatalogueRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/payments': {
-      id: '/client/payments'
-      path: '/payments'
-      fullPath: '/client/payments'
-      preLoaderRoute: typeof ClientPaymentsRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/analytics': {
+      id: '/_admin/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/notifications': {
-      id: '/client/notifications'
-      path: '/notifications'
-      fullPath: '/client/notifications'
-      preLoaderRoute: typeof ClientNotificationsRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/vendors/': {
+      id: '/_admin/vendors/'
+      path: '/vendors'
+      fullPath: '/vendors/'
+      preLoaderRoute: typeof AdminVendorsIndexRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/messages': {
-      id: '/client/messages'
-      path: '/messages'
-      fullPath: '/client/messages'
-      preLoaderRoute: typeof ClientMessagesRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/submissions/': {
+      id: '/_admin/submissions/'
+      path: '/submissions'
+      fullPath: '/submissions/'
+      preLoaderRoute: typeof AdminSubmissionsIndexRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/marketplace': {
-      id: '/client/marketplace'
-      path: '/marketplace'
-      fullPath: '/client/marketplace'
-      preLoaderRoute: typeof ClientMarketplaceRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/refunds/': {
+      id: '/_admin/refunds/'
+      path: '/refunds'
+      fullPath: '/refunds/'
+      preLoaderRoute: typeof AdminRefundsIndexRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/inspirations': {
-      id: '/client/inspirations'
-      path: '/inspirations'
-      fullPath: '/client/inspirations'
-      preLoaderRoute: typeof ClientInspirationsRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/orders/': {
+      id: '/_admin/orders/'
+      path: '/orders'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof AdminOrdersIndexRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/documents': {
-      id: '/client/documents'
-      path: '/documents'
-      fullPath: '/client/documents'
-      preLoaderRoute: typeof ClientDocumentsRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/vendors/$id': {
+      id: '/_admin/vendors/$id'
+      path: '/vendors/$id'
+      fullPath: '/vendors/$id'
+      preLoaderRoute: typeof AdminVendorsIdRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/changes': {
-      id: '/client/changes'
-      path: '/changes'
-      fullPath: '/client/changes'
-      preLoaderRoute: typeof ClientChangesRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/submissions/$id': {
+      id: '/_admin/submissions/$id'
+      path: '/submissions/$id'
+      fullPath: '/submissions/$id'
+      preLoaderRoute: typeof AdminSubmissionsIdRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/auth': {
-      id: '/client/auth'
-      path: '/auth'
-      fullPath: '/client/auth'
-      preLoaderRoute: typeof ClientAuthRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/refunds/$id': {
+      id: '/_admin/refunds/$id'
+      path: '/refunds/$id'
+      fullPath: '/refunds/$id'
+      preLoaderRoute: typeof AdminRefundsIdRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/client/appointments': {
-      id: '/client/appointments'
-      path: '/appointments'
-      fullPath: '/client/appointments'
-      preLoaderRoute: typeof ClientAppointmentsRouteImport
-      parentRoute: typeof ClientRoute
+    '/_admin/orders/$id': {
+      id: '/_admin/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/orders/$id'
+      preLoaderRoute: typeof AdminOrdersIdRouteImport
+      parentRoute: typeof AdminRoute
     }
-    '/app/workers': {
-      id: '/app/workers'
-      path: '/workers'
-      fullPath: '/app/workers'
-      preLoaderRoute: typeof AppWorkersRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/settings': {
-      id: '/app/settings'
-      path: '/settings'
-      fullPath: '/app/settings'
-      preLoaderRoute: typeof AppSettingsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/measurements': {
-      id: '/app/measurements'
-      path: '/measurements'
-      fullPath: '/app/measurements'
-      preLoaderRoute: typeof AppMeasurementsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/materials': {
-      id: '/app/materials'
-      path: '/materials'
-      fullPath: '/app/materials'
-      preLoaderRoute: typeof AppMaterialsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/finances': {
-      id: '/app/finances'
-      path: '/finances'
-      fullPath: '/app/finances'
-      preLoaderRoute: typeof AppFinancesRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/documents': {
-      id: '/app/documents'
-      path: '/documents'
-      fullPath: '/app/documents'
-      preLoaderRoute: typeof AppDocumentsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/crm': {
-      id: '/app/crm'
-      path: '/crm'
-      fullPath: '/app/crm'
-      preLoaderRoute: typeof AppCrmRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/calculator': {
-      id: '/app/calculator'
-      path: '/calculator'
-      fullPath: '/app/calculator'
-      preLoaderRoute: typeof AppCalculatorRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/client/projects/': {
-      id: '/client/projects/'
-      path: '/projects'
-      fullPath: '/client/projects/'
-      preLoaderRoute: typeof ClientProjectsIndexRouteImport
-      parentRoute: typeof ClientRoute
-    }
-    '/app/projects/': {
-      id: '/app/projects/'
-      path: '/projects'
-      fullPath: '/app/projects/'
-      preLoaderRoute: typeof AppProjectsIndexRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/client/projects/$id': {
-      id: '/client/projects/$id'
-      path: '/projects/$id'
-      fullPath: '/client/projects/$id'
-      preLoaderRoute: typeof ClientProjectsIdRouteImport
-      parentRoute: typeof ClientRoute
-    }
-    '/app/projects/$id': {
-      id: '/app/projects/$id'
-      path: '/projects/$id'
-      fullPath: '/app/projects/$id'
-      preLoaderRoute: typeof AppProjectsIdRouteImport
-      parentRoute: typeof AppRoute
+    '/_admin/submissions/$id/publish': {
+      id: '/_admin/submissions/$id/publish'
+      path: '/publish'
+      fullPath: '/submissions/$id/publish'
+      preLoaderRoute: typeof AdminSubmissionsIdPublishRouteImport
+      parentRoute: typeof AdminSubmissionsIdRoute
     }
   }
 }
 
-interface AppRouteChildren {
-  AppCalculatorRoute: typeof AppCalculatorRoute
-  AppCrmRoute: typeof AppCrmRoute
-  AppDocumentsRoute: typeof AppDocumentsRoute
-  AppFinancesRoute: typeof AppFinancesRoute
-  AppMaterialsRoute: typeof AppMaterialsRoute
-  AppMeasurementsRoute: typeof AppMeasurementsRoute
-  AppSettingsRoute: typeof AppSettingsRoute
-  AppWorkersRoute: typeof AppWorkersRoute
-  AppIndexRoute: typeof AppIndexRoute
-  AppProjectsIdRoute: typeof AppProjectsIdRoute
-  AppProjectsIndexRoute: typeof AppProjectsIndexRoute
+interface AdminSubmissionsIdRouteChildren {
+  AdminSubmissionsIdPublishRoute: typeof AdminSubmissionsIdPublishRoute
 }
 
-const AppRouteChildren: AppRouteChildren = {
-  AppCalculatorRoute: AppCalculatorRoute,
-  AppCrmRoute: AppCrmRoute,
-  AppDocumentsRoute: AppDocumentsRoute,
-  AppFinancesRoute: AppFinancesRoute,
-  AppMaterialsRoute: AppMaterialsRoute,
-  AppMeasurementsRoute: AppMeasurementsRoute,
-  AppSettingsRoute: AppSettingsRoute,
-  AppWorkersRoute: AppWorkersRoute,
-  AppIndexRoute: AppIndexRoute,
-  AppProjectsIdRoute: AppProjectsIdRoute,
-  AppProjectsIndexRoute: AppProjectsIndexRoute,
+const AdminSubmissionsIdRouteChildren: AdminSubmissionsIdRouteChildren = {
+  AdminSubmissionsIdPublishRoute: AdminSubmissionsIdPublishRoute,
 }
 
-const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+const AdminSubmissionsIdRouteWithChildren =
+  AdminSubmissionsIdRoute._addFileChildren(AdminSubmissionsIdRouteChildren)
 
-interface ClientRouteChildren {
-  ClientAppointmentsRoute: typeof ClientAppointmentsRoute
-  ClientAuthRoute: typeof ClientAuthRoute
-  ClientChangesRoute: typeof ClientChangesRoute
-  ClientDocumentsRoute: typeof ClientDocumentsRoute
-  ClientInspirationsRoute: typeof ClientInspirationsRoute
-  ClientMarketplaceRoute: typeof ClientMarketplaceRoute
-  ClientMessagesRoute: typeof ClientMessagesRoute
-  ClientNotificationsRoute: typeof ClientNotificationsRoute
-  ClientPaymentsRoute: typeof ClientPaymentsRoute
-  ClientProfileRoute: typeof ClientProfileRoute
-  ClientReferralsRoute: typeof ClientReferralsRoute
-  ClientReviewsRoute: typeof ClientReviewsRoute
-  ClientIndexRoute: typeof ClientIndexRoute
-  ClientProjectsIdRoute: typeof ClientProjectsIdRoute
-  ClientProjectsIndexRoute: typeof ClientProjectsIndexRoute
+interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminCatalogueRoute: typeof AdminCatalogueRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminDeliveriesRoute: typeof AdminDeliveriesRoute
+  AdminFinanceRoute: typeof AdminFinanceRoute
+  AdminImmediateRoute: typeof AdminImmediateRoute
+  AdminOrdersIdRoute: typeof AdminOrdersIdRoute
+  AdminRefundsIdRoute: typeof AdminRefundsIdRoute
+  AdminSubmissionsIdRoute: typeof AdminSubmissionsIdRouteWithChildren
+  AdminVendorsIdRoute: typeof AdminVendorsIdRoute
+  AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
+  AdminRefundsIndexRoute: typeof AdminRefundsIndexRoute
+  AdminSubmissionsIndexRoute: typeof AdminSubmissionsIndexRoute
+  AdminVendorsIndexRoute: typeof AdminVendorsIndexRoute
 }
 
-const ClientRouteChildren: ClientRouteChildren = {
-  ClientAppointmentsRoute: ClientAppointmentsRoute,
-  ClientAuthRoute: ClientAuthRoute,
-  ClientChangesRoute: ClientChangesRoute,
-  ClientDocumentsRoute: ClientDocumentsRoute,
-  ClientInspirationsRoute: ClientInspirationsRoute,
-  ClientMarketplaceRoute: ClientMarketplaceRoute,
-  ClientMessagesRoute: ClientMessagesRoute,
-  ClientNotificationsRoute: ClientNotificationsRoute,
-  ClientPaymentsRoute: ClientPaymentsRoute,
-  ClientProfileRoute: ClientProfileRoute,
-  ClientReferralsRoute: ClientReferralsRoute,
-  ClientReviewsRoute: ClientReviewsRoute,
-  ClientIndexRoute: ClientIndexRoute,
-  ClientProjectsIdRoute: ClientProjectsIdRoute,
-  ClientProjectsIndexRoute: ClientProjectsIndexRoute,
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminCatalogueRoute: AdminCatalogueRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminDeliveriesRoute: AdminDeliveriesRoute,
+  AdminFinanceRoute: AdminFinanceRoute,
+  AdminImmediateRoute: AdminImmediateRoute,
+  AdminOrdersIdRoute: AdminOrdersIdRoute,
+  AdminRefundsIdRoute: AdminRefundsIdRoute,
+  AdminSubmissionsIdRoute: AdminSubmissionsIdRouteWithChildren,
+  AdminVendorsIdRoute: AdminVendorsIdRoute,
+  AdminOrdersIndexRoute: AdminOrdersIndexRoute,
+  AdminRefundsIndexRoute: AdminRefundsIndexRoute,
+  AdminSubmissionsIndexRoute: AdminSubmissionsIndexRoute,
+  AdminVendorsIndexRoute: AdminVendorsIndexRoute,
 }
 
-const ClientRouteWithChildren =
-  ClientRoute._addFileChildren(ClientRouteChildren)
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AppRoute: AppRouteWithChildren,
-  AuthRoute: AuthRoute,
-  ClientRoute: ClientRouteWithChildren,
-  ContactRoute: ContactRoute,
-  RealisationsRoute: RealisationsRoute,
-  ServicesRoute: ServicesRoute,
+  AdminRoute: AdminRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
