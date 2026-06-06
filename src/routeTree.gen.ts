@@ -11,10 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminImmediateRouteImport } from './routes/_admin.immediate'
+import { Route as AdminDeliveriesRouteImport } from './routes/_admin.deliveries'
 import { Route as AdminDashboardRouteImport } from './routes/_admin.dashboard'
+import { Route as AdminCatalogueRouteImport } from './routes/_admin.catalogue'
+import { Route as AdminVendorsIndexRouteImport } from './routes/_admin.vendors.index'
 import { Route as AdminSubmissionsIndexRouteImport } from './routes/_admin.submissions.index'
 import { Route as AdminRefundsIndexRouteImport } from './routes/_admin.refunds.index'
 import { Route as AdminOrdersIndexRouteImport } from './routes/_admin.orders.index'
+import { Route as AdminVendorsIdRouteImport } from './routes/_admin.vendors.$id'
 import { Route as AdminSubmissionsIdRouteImport } from './routes/_admin.submissions.$id'
 import { Route as AdminRefundsIdRouteImport } from './routes/_admin.refunds.$id'
 import { Route as AdminOrdersIdRouteImport } from './routes/_admin.orders.$id'
@@ -29,9 +34,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminImmediateRoute = AdminImmediateRouteImport.update({
+  id: '/immediate',
+  path: '/immediate',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDeliveriesRoute = AdminDeliveriesRouteImport.update({
+  id: '/deliveries',
+  path: '/deliveries',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminDashboardRoute = AdminDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCatalogueRoute = AdminCatalogueRouteImport.update({
+  id: '/catalogue',
+  path: '/catalogue',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminVendorsIndexRoute = AdminVendorsIndexRouteImport.update({
+  id: '/vendors/',
+  path: '/vendors/',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminSubmissionsIndexRoute = AdminSubmissionsIndexRouteImport.update({
@@ -47,6 +72,11 @@ const AdminRefundsIndexRoute = AdminRefundsIndexRouteImport.update({
 const AdminOrdersIndexRoute = AdminOrdersIndexRouteImport.update({
   id: '/orders/',
   path: '/orders/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminVendorsIdRoute = AdminVendorsIdRouteImport.update({
+  id: '/vendors/$id',
+  path: '/vendors/$id',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminSubmissionsIdRoute = AdminSubmissionsIdRouteImport.update({
@@ -73,73 +103,103 @@ const AdminSubmissionsIdPublishRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/catalogue': typeof AdminCatalogueRoute
   '/dashboard': typeof AdminDashboardRoute
+  '/deliveries': typeof AdminDeliveriesRoute
+  '/immediate': typeof AdminImmediateRoute
   '/orders/$id': typeof AdminOrdersIdRoute
   '/refunds/$id': typeof AdminRefundsIdRoute
   '/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/vendors/$id': typeof AdminVendorsIdRoute
   '/orders/': typeof AdminOrdersIndexRoute
   '/refunds/': typeof AdminRefundsIndexRoute
   '/submissions/': typeof AdminSubmissionsIndexRoute
+  '/vendors/': typeof AdminVendorsIndexRoute
   '/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/catalogue': typeof AdminCatalogueRoute
   '/dashboard': typeof AdminDashboardRoute
+  '/deliveries': typeof AdminDeliveriesRoute
+  '/immediate': typeof AdminImmediateRoute
   '/orders/$id': typeof AdminOrdersIdRoute
   '/refunds/$id': typeof AdminRefundsIdRoute
   '/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/vendors/$id': typeof AdminVendorsIdRoute
   '/orders': typeof AdminOrdersIndexRoute
   '/refunds': typeof AdminRefundsIndexRoute
   '/submissions': typeof AdminSubmissionsIndexRoute
+  '/vendors': typeof AdminVendorsIndexRoute
   '/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_admin': typeof AdminRouteWithChildren
+  '/_admin/catalogue': typeof AdminCatalogueRoute
   '/_admin/dashboard': typeof AdminDashboardRoute
+  '/_admin/deliveries': typeof AdminDeliveriesRoute
+  '/_admin/immediate': typeof AdminImmediateRoute
   '/_admin/orders/$id': typeof AdminOrdersIdRoute
   '/_admin/refunds/$id': typeof AdminRefundsIdRoute
   '/_admin/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/_admin/vendors/$id': typeof AdminVendorsIdRoute
   '/_admin/orders/': typeof AdminOrdersIndexRoute
   '/_admin/refunds/': typeof AdminRefundsIndexRoute
   '/_admin/submissions/': typeof AdminSubmissionsIndexRoute
+  '/_admin/vendors/': typeof AdminVendorsIndexRoute
   '/_admin/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/catalogue'
     | '/dashboard'
+    | '/deliveries'
+    | '/immediate'
     | '/orders/$id'
     | '/refunds/$id'
     | '/submissions/$id'
+    | '/vendors/$id'
     | '/orders/'
     | '/refunds/'
     | '/submissions/'
+    | '/vendors/'
     | '/submissions/$id/publish'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/catalogue'
     | '/dashboard'
+    | '/deliveries'
+    | '/immediate'
     | '/orders/$id'
     | '/refunds/$id'
     | '/submissions/$id'
+    | '/vendors/$id'
     | '/orders'
     | '/refunds'
     | '/submissions'
+    | '/vendors'
     | '/submissions/$id/publish'
   id:
     | '__root__'
     | '/'
     | '/_admin'
+    | '/_admin/catalogue'
     | '/_admin/dashboard'
+    | '/_admin/deliveries'
+    | '/_admin/immediate'
     | '/_admin/orders/$id'
     | '/_admin/refunds/$id'
     | '/_admin/submissions/$id'
+    | '/_admin/vendors/$id'
     | '/_admin/orders/'
     | '/_admin/refunds/'
     | '/_admin/submissions/'
+    | '/_admin/vendors/'
     | '/_admin/submissions/$id/publish'
   fileRoutesById: FileRoutesById
 }
@@ -164,11 +224,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_admin/immediate': {
+      id: '/_admin/immediate'
+      path: '/immediate'
+      fullPath: '/immediate'
+      preLoaderRoute: typeof AdminImmediateRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/deliveries': {
+      id: '/_admin/deliveries'
+      path: '/deliveries'
+      fullPath: '/deliveries'
+      preLoaderRoute: typeof AdminDeliveriesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/_admin/dashboard': {
       id: '/_admin/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/catalogue': {
+      id: '/_admin/catalogue'
+      path: '/catalogue'
+      fullPath: '/catalogue'
+      preLoaderRoute: typeof AdminCatalogueRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/vendors/': {
+      id: '/_admin/vendors/'
+      path: '/vendors'
+      fullPath: '/vendors/'
+      preLoaderRoute: typeof AdminVendorsIndexRouteImport
       parentRoute: typeof AdminRoute
     }
     '/_admin/submissions/': {
@@ -190,6 +278,13 @@ declare module '@tanstack/react-router' {
       path: '/orders'
       fullPath: '/orders/'
       preLoaderRoute: typeof AdminOrdersIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/vendors/$id': {
+      id: '/_admin/vendors/$id'
+      path: '/vendors/$id'
+      fullPath: '/vendors/$id'
+      preLoaderRoute: typeof AdminVendorsIdRouteImport
       parentRoute: typeof AdminRoute
     }
     '/_admin/submissions/$id': {
@@ -235,23 +330,33 @@ const AdminSubmissionsIdRouteWithChildren =
   AdminSubmissionsIdRoute._addFileChildren(AdminSubmissionsIdRouteChildren)
 
 interface AdminRouteChildren {
+  AdminCatalogueRoute: typeof AdminCatalogueRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminDeliveriesRoute: typeof AdminDeliveriesRoute
+  AdminImmediateRoute: typeof AdminImmediateRoute
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
   AdminRefundsIdRoute: typeof AdminRefundsIdRoute
   AdminSubmissionsIdRoute: typeof AdminSubmissionsIdRouteWithChildren
+  AdminVendorsIdRoute: typeof AdminVendorsIdRoute
   AdminOrdersIndexRoute: typeof AdminOrdersIndexRoute
   AdminRefundsIndexRoute: typeof AdminRefundsIndexRoute
   AdminSubmissionsIndexRoute: typeof AdminSubmissionsIndexRoute
+  AdminVendorsIndexRoute: typeof AdminVendorsIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminCatalogueRoute: AdminCatalogueRoute,
   AdminDashboardRoute: AdminDashboardRoute,
+  AdminDeliveriesRoute: AdminDeliveriesRoute,
+  AdminImmediateRoute: AdminImmediateRoute,
   AdminOrdersIdRoute: AdminOrdersIdRoute,
   AdminRefundsIdRoute: AdminRefundsIdRoute,
   AdminSubmissionsIdRoute: AdminSubmissionsIdRouteWithChildren,
+  AdminVendorsIdRoute: AdminVendorsIdRoute,
   AdminOrdersIndexRoute: AdminOrdersIndexRoute,
   AdminRefundsIndexRoute: AdminRefundsIndexRoute,
   AdminSubmissionsIndexRoute: AdminSubmissionsIndexRoute,
+  AdminVendorsIndexRoute: AdminVendorsIndexRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
