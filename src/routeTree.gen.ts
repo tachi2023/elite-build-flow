@@ -9,38 +9,106 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminDashboardRouteImport } from './routes/_admin.dashboard'
+import { Route as AdminSubmissionsIndexRouteImport } from './routes/_admin.submissions.index'
+import { Route as AdminSubmissionsIdRouteImport } from './routes/_admin.submissions.$id'
+import { Route as AdminSubmissionsIdPublishRouteImport } from './routes/_admin.submissions.$id.publish'
 
+const AdminRoute = AdminRouteImport.update({
+  id: '/_admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSubmissionsIndexRoute = AdminSubmissionsIndexRouteImport.update({
+  id: '/submissions/',
+  path: '/submissions/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSubmissionsIdRoute = AdminSubmissionsIdRouteImport.update({
+  id: '/submissions/$id',
+  path: '/submissions/$id',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSubmissionsIdPublishRoute =
+  AdminSubmissionsIdPublishRouteImport.update({
+    id: '/publish',
+    path: '/publish',
+    getParentRoute: () => AdminSubmissionsIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof AdminDashboardRoute
+  '/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/submissions/': typeof AdminSubmissionsIndexRoute
+  '/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof AdminDashboardRoute
+  '/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/submissions': typeof AdminSubmissionsIndexRoute
+  '/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_admin': typeof AdminRouteWithChildren
+  '/_admin/dashboard': typeof AdminDashboardRoute
+  '/_admin/submissions/$id': typeof AdminSubmissionsIdRouteWithChildren
+  '/_admin/submissions/': typeof AdminSubmissionsIndexRoute
+  '/_admin/submissions/$id/publish': typeof AdminSubmissionsIdPublishRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/submissions/$id'
+    | '/submissions/'
+    | '/submissions/$id/publish'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/submissions/$id'
+    | '/submissions'
+    | '/submissions/$id/publish'
+  id:
+    | '__root__'
+    | '/'
+    | '/_admin'
+    | '/_admin/dashboard'
+    | '/_admin/submissions/$id'
+    | '/_admin/submissions/'
+    | '/_admin/submissions/$id/publish'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_admin': {
+      id: '/_admin'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,12 +116,76 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_admin/dashboard': {
+      id: '/_admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/submissions/': {
+      id: '/_admin/submissions/'
+      path: '/submissions'
+      fullPath: '/submissions/'
+      preLoaderRoute: typeof AdminSubmissionsIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/submissions/$id': {
+      id: '/_admin/submissions/$id'
+      path: '/submissions/$id'
+      fullPath: '/submissions/$id'
+      preLoaderRoute: typeof AdminSubmissionsIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/submissions/$id/publish': {
+      id: '/_admin/submissions/$id/publish'
+      path: '/publish'
+      fullPath: '/submissions/$id/publish'
+      preLoaderRoute: typeof AdminSubmissionsIdPublishRouteImport
+      parentRoute: typeof AdminSubmissionsIdRoute
+    }
   }
 }
 
+interface AdminSubmissionsIdRouteChildren {
+  AdminSubmissionsIdPublishRoute: typeof AdminSubmissionsIdPublishRoute
+}
+
+const AdminSubmissionsIdRouteChildren: AdminSubmissionsIdRouteChildren = {
+  AdminSubmissionsIdPublishRoute: AdminSubmissionsIdPublishRoute,
+}
+
+const AdminSubmissionsIdRouteWithChildren =
+  AdminSubmissionsIdRoute._addFileChildren(AdminSubmissionsIdRouteChildren)
+
+interface AdminRouteChildren {
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminSubmissionsIdRoute: typeof AdminSubmissionsIdRouteWithChildren
+  AdminSubmissionsIndexRoute: typeof AdminSubmissionsIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminSubmissionsIdRoute: AdminSubmissionsIdRouteWithChildren,
+  AdminSubmissionsIndexRoute: AdminSubmissionsIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
