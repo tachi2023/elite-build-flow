@@ -12,9 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AdminRouteImport } from './routes/_admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminImmediateRouteImport } from './routes/_admin.immediate'
+import { Route as AdminFinanceRouteImport } from './routes/_admin.finance'
 import { Route as AdminDeliveriesRouteImport } from './routes/_admin.deliveries'
 import { Route as AdminDashboardRouteImport } from './routes/_admin.dashboard'
 import { Route as AdminCatalogueRouteImport } from './routes/_admin.catalogue'
+import { Route as AdminAnalyticsRouteImport } from './routes/_admin.analytics'
 import { Route as AdminVendorsIndexRouteImport } from './routes/_admin.vendors.index'
 import { Route as AdminSubmissionsIndexRouteImport } from './routes/_admin.submissions.index'
 import { Route as AdminRefundsIndexRouteImport } from './routes/_admin.refunds.index'
@@ -39,6 +41,11 @@ const AdminImmediateRoute = AdminImmediateRouteImport.update({
   path: '/immediate',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminFinanceRoute = AdminFinanceRouteImport.update({
+  id: '/finance',
+  path: '/finance',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminDeliveriesRoute = AdminDeliveriesRouteImport.update({
   id: '/deliveries',
   path: '/deliveries',
@@ -52,6 +59,11 @@ const AdminDashboardRoute = AdminDashboardRouteImport.update({
 const AdminCatalogueRoute = AdminCatalogueRouteImport.update({
   id: '/catalogue',
   path: '/catalogue',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminVendorsIndexRoute = AdminVendorsIndexRouteImport.update({
@@ -103,9 +115,11 @@ const AdminSubmissionsIdPublishRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AdminAnalyticsRoute
   '/catalogue': typeof AdminCatalogueRoute
   '/dashboard': typeof AdminDashboardRoute
   '/deliveries': typeof AdminDeliveriesRoute
+  '/finance': typeof AdminFinanceRoute
   '/immediate': typeof AdminImmediateRoute
   '/orders/$id': typeof AdminOrdersIdRoute
   '/refunds/$id': typeof AdminRefundsIdRoute
@@ -119,9 +133,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AdminAnalyticsRoute
   '/catalogue': typeof AdminCatalogueRoute
   '/dashboard': typeof AdminDashboardRoute
   '/deliveries': typeof AdminDeliveriesRoute
+  '/finance': typeof AdminFinanceRoute
   '/immediate': typeof AdminImmediateRoute
   '/orders/$id': typeof AdminOrdersIdRoute
   '/refunds/$id': typeof AdminRefundsIdRoute
@@ -137,9 +153,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_admin': typeof AdminRouteWithChildren
+  '/_admin/analytics': typeof AdminAnalyticsRoute
   '/_admin/catalogue': typeof AdminCatalogueRoute
   '/_admin/dashboard': typeof AdminDashboardRoute
   '/_admin/deliveries': typeof AdminDeliveriesRoute
+  '/_admin/finance': typeof AdminFinanceRoute
   '/_admin/immediate': typeof AdminImmediateRoute
   '/_admin/orders/$id': typeof AdminOrdersIdRoute
   '/_admin/refunds/$id': typeof AdminRefundsIdRoute
@@ -155,9 +173,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/analytics'
     | '/catalogue'
     | '/dashboard'
     | '/deliveries'
+    | '/finance'
     | '/immediate'
     | '/orders/$id'
     | '/refunds/$id'
@@ -171,9 +191,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/analytics'
     | '/catalogue'
     | '/dashboard'
     | '/deliveries'
+    | '/finance'
     | '/immediate'
     | '/orders/$id'
     | '/refunds/$id'
@@ -188,9 +210,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_admin'
+    | '/_admin/analytics'
     | '/_admin/catalogue'
     | '/_admin/dashboard'
     | '/_admin/deliveries'
+    | '/_admin/finance'
     | '/_admin/immediate'
     | '/_admin/orders/$id'
     | '/_admin/refunds/$id'
@@ -231,6 +255,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminImmediateRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/_admin/finance': {
+      id: '/_admin/finance'
+      path: '/finance'
+      fullPath: '/finance'
+      preLoaderRoute: typeof AdminFinanceRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/_admin/deliveries': {
       id: '/_admin/deliveries'
       path: '/deliveries'
@@ -250,6 +281,13 @@ declare module '@tanstack/react-router' {
       path: '/catalogue'
       fullPath: '/catalogue'
       preLoaderRoute: typeof AdminCatalogueRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/_admin/analytics': {
+      id: '/_admin/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
       parentRoute: typeof AdminRoute
     }
     '/_admin/vendors/': {
@@ -330,9 +368,11 @@ const AdminSubmissionsIdRouteWithChildren =
   AdminSubmissionsIdRoute._addFileChildren(AdminSubmissionsIdRouteChildren)
 
 interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminCatalogueRoute: typeof AdminCatalogueRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminDeliveriesRoute: typeof AdminDeliveriesRoute
+  AdminFinanceRoute: typeof AdminFinanceRoute
   AdminImmediateRoute: typeof AdminImmediateRoute
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
   AdminRefundsIdRoute: typeof AdminRefundsIdRoute
@@ -345,9 +385,11 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminCatalogueRoute: AdminCatalogueRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminDeliveriesRoute: AdminDeliveriesRoute,
+  AdminFinanceRoute: AdminFinanceRoute,
   AdminImmediateRoute: AdminImmediateRoute,
   AdminOrdersIdRoute: AdminOrdersIdRoute,
   AdminRefundsIdRoute: AdminRefundsIdRoute,
