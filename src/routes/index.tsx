@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Lock } from "lucide-react";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [{ title: "Elite placo&deco" }] }),
+  head: () => ({ meta: [{ title: "VraiDeal Admin — Connexion" }] }),
   component: LoginPage,
 });
 

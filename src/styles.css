@@ -141,7 +141,7 @@
 
 @utility hover-row {
   transition: background-color 150ms ease;
-  &:hover {
-    background-color: var(--color-surface-3);
-  }
+}
+@utility hover-row:hover {
+  background-color: var(--color-surface-3);
 }
