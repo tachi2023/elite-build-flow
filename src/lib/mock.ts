@@ -1,463 +1,316 @@
-// VraiDeal mock data — all in-memory, no backend.
-export type Category =
-  | "Vêtements" | "Accessoires" | "Téléphones" | "Ordinateurs"
-  | "Électroménager" | "Meubles" | "Véhicules" | "Autres";
+// Élite Placo & Déco | PRIMA BTP — données simulées (côté pro/entreprise)
 
-export const CATEGORIES: Category[] = [
-  "Téléphones", "Ordinateurs", "Électroménager", "Meubles",
-  "Véhicules", "Vêtements", "Accessoires", "Autres",
+export type Currency = number; // FCFA
+
+export type ServiceItem = {
+  id: string;
+  title: string;
+  tagline: string;
+  description: string;
+  bullets: string[];
+  from: Currency; // prix indicatif au m²
+  icon: string;
+};
+
+export const SERVICES: ServiceItem[] = [
+  {
+    id: "placo",
+    title: "Cloisons & Placoplâtre",
+    tagline: "Structures sèches sur mesure",
+    description:
+      "Cloisons séparatives, doublages thermiques et acoustiques, gaines techniques. Pose BA13 standard, hydrofuge et coupe-feu selon l'usage de la pièce.",
+    bullets: ["Cloison 72/48 & 98/48", "Doublage isolant", "Plaques hydro (cuisine, SDB)", "Coupe-feu 1h & 2h"],
+    from: 9500,
+    icon: "layout-panel-left",
+  },
+  {
+    id: "faux-plafond",
+    title: "Faux plafonds décoratifs",
+    tagline: "Volumes, lumière et relief",
+    description:
+      "Plafonds suspendus, retombées, corniches lumineuses et intégration complète de l'éclairage LED indirect.",
+    bullets: ["Plafond suspendu BA13", "Retombées & gorges LED", "Dalles démontables 60×60", "Acoustique bureaux"],
+    from: 12000,
+    icon: "panel-top",
+  },
+  {
+    id: "staff",
+    title: "Staff & moulures",
+    tagline: "L'élégance du plâtre traditionnel",
+    description:
+      "Rosaces, corniches, colonnes et éléments décoratifs en staff, réalisés et posés par nos plâtriers d'art.",
+    bullets: ["Corniches sur mesure", "Rosaces & médaillons", "Colonnes et pilastres", "Restauration"],
+    from: 15000,
+    icon: "crown",
+  },
+  {
+    id: "peinture",
+    title: "Peinture & enduits décoratifs",
+    tagline: "Finitions haut de gamme",
+    description:
+      "Enduits lissés, béton ciré, stuc vénitien et peintures premium avec préparation soignée des supports.",
+    bullets: ["Enduit lissé qualité A", "Béton ciré", "Stuc & effets matières", "Peinture lessivable"],
+    from: 4500,
+    icon: "paint-roller",
+  },
+  {
+    id: "revetement",
+    title: "Revêtements muraux & sols",
+    tagline: "Matières nobles",
+    description: "Papiers peints panoramiques, lambris, parquets stratifiés et plinthes décoratives.",
+    bullets: ["Papier peint panoramique", "Lambris bois & PVC", "Parquet & stratifié", "Plinthes déco"],
+    from: 7000,
+    icon: "layers",
+  },
+  {
+    id: "design",
+    title: "Design d'intérieur",
+    tagline: "Du plan 3D à la livraison",
+    description:
+      "Conception d'espace, planches d'ambiance, rendu 3D et suivi complet du chantier par un chef de projet dédié.",
+    bullets: ["Relevé de métrés", "Plans & 3D", "Planches matières", "Suivi de chantier"],
+    from: 0,
+    icon: "ruler",
+  },
 ];
 
-export type Condition = "Neuf" | "Très bon" | "Bon" | "Passable";
+export type Realisation = {
+  id: string;
+  title: string;
+  category: "Résidentiel" | "Commercial" | "Bureaux" | "Hôtellerie";
+  location: string;
+  surface: number;
+  year: number;
+  duration: string;
+  budget: Currency;
+  cover: string;
+  before: string;
+  after: string;
+  description: string;
+  tags: string[];
+};
 
-const placeholder = (seed: string, w = 800, h = 600) =>
+const img = (seed: string, w = 1200, h = 800) =>
   `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;
 
-export type Submission = {
-  id: string;            // SUB-2026-0089
+export const REALISATIONS: Realisation[] = [
+  {
+    id: "R-01", title: "Villa Bonapriso — Salon cathédrale", category: "Résidentiel",
+    location: "Bonapriso, Douala", surface: 240, year: 2025, duration: "7 semaines", budget: 18_500_000,
+    cover: img("elite-villa-1"), before: img("elite-villa-1-b"), after: img("elite-villa-1-a"),
+    description: "Faux plafond à double retombée avec gorge lumineuse, staff décoratif et enduit lissé qualité A sur l'ensemble du séjour.",
+    tags: ["Faux plafond", "Staff", "LED", "Enduit lissé"],
+  },
+  {
+    id: "R-02", title: "Siège PRIMA — Open space 40 postes", category: "Bureaux",
+    location: "Akwa, Douala", surface: 620, year: 2025, duration: "10 semaines", budget: 42_000_000,
+    cover: img("elite-office-1"), before: img("elite-office-1-b"), after: img("elite-office-1-a"),
+    description: "Cloisonnement acoustique, plafond dalles 60×60 et salles de réunion vitrées avec doublage phonique.",
+    tags: ["Cloisons", "Acoustique", "Bureaux"],
+  },
+  {
+    id: "R-03", title: "Boutique Élégance — Bonanjo", category: "Commercial",
+    location: "Bonanjo, Douala", surface: 95, year: 2024, duration: "3 semaines", budget: 7_800_000,
+    cover: img("elite-shop-1"), before: img("elite-shop-1-b"), after: img("elite-shop-1-a"),
+    description: "Habillage mural en niches rétroéclairées, béton ciré au sol et plafond noir mat technique.",
+    tags: ["Niches LED", "Béton ciré", "Retail"],
+  },
+  {
+    id: "R-04", title: "Résidence Kotto — 6 appartements", category: "Résidentiel",
+    location: "Kotto, Douala", surface: 480, year: 2024, duration: "12 semaines", budget: 29_400_000,
+    cover: img("elite-appart-1"), before: img("elite-appart-1-b"), after: img("elite-appart-1-a"),
+    description: "Doublage thermique complet, faux plafonds périphériques et peinture premium sur six logements livrés clé en main.",
+    tags: ["Doublage", "Peinture", "Clé en main"],
+  },
+  {
+    id: "R-05", title: "Hôtel Sawa — 18 chambres rénovées", category: "Hôtellerie",
+    location: "Bonanjo, Douala", surface: 760, year: 2023, duration: "16 semaines", budget: 55_000_000,
+    cover: img("elite-hotel-1"), before: img("elite-hotel-1-b"), after: img("elite-hotel-1-a"),
+    description: "Rénovation intégrale : têtes de lit en staff, corniches lumineuses, lambris et finitions haut de gamme.",
+    tags: ["Hôtellerie", "Staff", "Lambris"],
+  },
+  {
+    id: "R-06", title: "Duplex Bonamoussadi", category: "Résidentiel",
+    location: "Bonamoussadi, Douala", surface: 310, year: 2023, duration: "9 semaines", budget: 21_200_000,
+    cover: img("elite-duplex-1"), before: img("elite-duplex-1-b"), after: img("elite-duplex-1-a"),
+    description: "Escalier habillé, plafond en caissons et stuc vénitien dans les pièces de réception.",
+    tags: ["Caissons", "Stuc vénitien"],
+  },
+];
+
+// ── Chantiers (pro) ──
+export type ChantierStatus = "Prospection" | "Devis" | "En cours" | "Finitions" | "Livré";
+
+export type Chantier = {
+  id: string;
   ref: string;
-  category: Category;
-  title: string;         // seller's free description headline
-  description: string;
-  declaredCondition: Condition;
-  minPrice: number;
+  name: string;
+  client: string;
+  clientPhone: string;
+  address: string;
+  status: ChantierStatus;
+  progress: number;
+  budget: Currency;
+  spent: Currency;
+  invoiced: Currency;
+  paid: Currency;
+  startAt: string;
+  endAt: string;
+  chef: string;
+  team: string[];
+  surface: number;
   photos: string[];
-  proofPhoto?: string;
-  vendorId: string;
-  submittedAt: string;
-  status: "En attente" | "Accepté" | "Refusé";
-  urgency: boolean;
-  immediatePurchase: boolean;
 };
 
-export type Vendor = {
+const day = (n: number) => new Date(Date.now() + n * 86400_000).toISOString();
+
+export const CHANTIERS: Chantier[] = [
+  {
+    id: "CH-2026-014", ref: "CH-2026-014", name: "Villa Mbappe — Bonapriso", client: "Marie Tchoungui",
+    clientPhone: "+237 6 99 41 22 08", address: "Rue Njo-Njo, Bonapriso, Douala",
+    status: "En cours", progress: 62, budget: 24_800_000, spent: 13_900_000, invoiced: 16_000_000, paid: 12_400_000,
+    startAt: day(-48), endAt: day(22), chef: "Alain Ngassa", team: ["Serge M.", "Blaise K.", "Yannick T.", "Idriss B."],
+    surface: 280, photos: [img("ch14a"), img("ch14b"), img("ch14c")],
+  },
+  {
+    id: "CH-2026-011", ref: "CH-2026-011", name: "Bureaux Wouri Trading", client: "Wouri Trading SARL",
+    clientPhone: "+237 6 77 12 88 40", address: "Boulevard de la Liberté, Akwa",
+    status: "Finitions", progress: 88, budget: 38_500_000, spent: 30_100_000, invoiced: 34_000_000, paid: 27_000_000,
+    startAt: day(-92), endAt: day(9), chef: "Patrick Etoa", team: ["Junior N.", "Roland S.", "Ali M."],
+    surface: 540, photos: [img("ch11a"), img("ch11b")],
+  },
+  {
+    id: "CH-2026-018", ref: "CH-2026-018", name: "Appartement Kotto B3", client: "Éric Fotso",
+    clientPhone: "+237 6 90 33 71 15", address: "Kotto, Douala V",
+    status: "Devis", progress: 5, budget: 9_600_000, spent: 0, invoiced: 0, paid: 0,
+    startAt: day(12), endAt: day(54), chef: "Alain Ngassa", team: [],
+    surface: 120, photos: [img("ch18a")],
+  },
+  {
+    id: "CH-2026-009", ref: "CH-2026-009", name: "Restaurant Le Fumoir", client: "Le Fumoir SARL",
+    clientPhone: "+237 6 55 90 12 47", address: "Bonanjo, Douala",
+    status: "Livré", progress: 100, budget: 15_200_000, spent: 11_800_000, invoiced: 15_200_000, paid: 15_200_000,
+    startAt: day(-140), endAt: day(-26), chef: "Patrick Etoa", team: ["Serge M.", "Blaise K."],
+    surface: 180, photos: [img("ch09a"), img("ch09b")],
+  },
+  {
+    id: "CH-2026-020", ref: "CH-2026-020", name: "Résidence Logpom — Lot A", client: "Immo Sawa",
+    clientPhone: "+237 6 71 45 66 21", address: "Logpom, Douala",
+    status: "Prospection", progress: 0, budget: 61_000_000, spent: 0, invoiced: 0, paid: 0,
+    startAt: day(30), endAt: day(150), chef: "—", team: [], surface: 900, photos: [img("ch20a")],
+  },
+];
+
+// ── Ouvriers ──
+export type Ouvrier = {
   id: string;
-  firstName: string;
-  whatsapp: string;
-  joinedAt: string;
-  submissions: number;
-  sold: number;
-  revenue: number;
-  trust: number; // 0-100
-  reports: number;
-  status: "Actif" | "Surveillance" | "Bloqué";
-  note?: string;
+  name: string;
+  role: "Chef de chantier" | "Plaquiste" | "Peintre" | "Plâtrier staff" | "Manœuvre" | "Électricien";
+  phone: string;
+  dailyRate: Currency;
+  chantierId?: string;
+  present: boolean;
+  rating: number;
+  since: string;
+  daysThisMonth: number;
 };
 
-export type Product = {
-  id: string;
-  submissionId: string;
-  title: string;
-  category: Category;
-  condition: Condition;
-  publicPrice: number;
-  description: string;
-  vendorId: string;
-  photos: string[];
-  publishedAt: string;
-  status: "Publié" | "Masqué" | "Vendu";
-  urgent: boolean;
-  urgentUntil?: string;
-  certified: boolean;
-  lastPingAt?: string;
-  pingResponse?: "OUI" | "NON" | "En attente";
-  daysWithoutResponse: number;
+export const OUVRIERS: Ouvrier[] = [
+  { id: "O-01", name: "Alain Ngassa", role: "Chef de chantier", phone: "+237 6 99 00 11 22", dailyRate: 25_000, chantierId: "CH-2026-014", present: true, rating: 4.9, since: "2019-03-01", daysThisMonth: 21 },
+  { id: "O-02", name: "Patrick Etoa", role: "Chef de chantier", phone: "+237 6 77 88 99 00", dailyRate: 24_000, chantierId: "CH-2026-011", present: true, rating: 4.7, since: "2020-06-15", daysThisMonth: 20 },
+  { id: "O-03", name: "Serge Mbarga", role: "Plaquiste", phone: "+237 6 90 12 34 56", dailyRate: 15_000, chantierId: "CH-2026-014", present: true, rating: 4.6, since: "2021-01-20", daysThisMonth: 22 },
+  { id: "O-04", name: "Blaise Kamdem", role: "Plaquiste", phone: "+237 6 55 44 33 22", dailyRate: 15_000, chantierId: "CH-2026-014", present: false, rating: 4.3, since: "2022-04-11", daysThisMonth: 17 },
+  { id: "O-05", name: "Yannick Tchana", role: "Peintre", phone: "+237 6 70 65 43 21", dailyRate: 13_000, chantierId: "CH-2026-014", present: true, rating: 4.8, since: "2021-09-02", daysThisMonth: 19 },
+  { id: "O-06", name: "Idriss Bello", role: "Plâtrier staff", phone: "+237 6 91 22 33 44", dailyRate: 18_000, chantierId: "CH-2026-014", present: true, rating: 5, since: "2018-11-05", daysThisMonth: 23 },
+  { id: "O-07", name: "Junior Nkoulou", role: "Plaquiste", phone: "+237 6 78 10 20 30", dailyRate: 14_000, chantierId: "CH-2026-011", present: true, rating: 4.2, since: "2023-02-14", daysThisMonth: 18 },
+  { id: "O-08", name: "Roland Sone", role: "Peintre", phone: "+237 6 99 55 66 77", dailyRate: 13_000, chantierId: "CH-2026-011", present: false, rating: 4.0, since: "2023-07-30", daysThisMonth: 12 },
+  { id: "O-09", name: "Ali Moussa", role: "Manœuvre", phone: "+237 6 60 11 22 33", dailyRate: 8_000, chantierId: "CH-2026-011", present: true, rating: 4.1, since: "2024-05-06", daysThisMonth: 20 },
+  { id: "O-10", name: "Cédric Owona", role: "Électricien", phone: "+237 6 94 77 88 99", dailyRate: 17_000, present: true, rating: 4.5, since: "2022-10-18", daysThisMonth: 15 },
+];
+
+// ── Finances ──
+export type Depense = {
+  id: string; label: string; category: "Matériaux" | "Main d'œuvre" | "Transport" | "Sous-traitance" | "Divers";
+  amount: Currency; chantierId: string; date: string;
 };
 
-export type Order = {
-  id: string;            // VD-2026-0031
-  productId: string;
-  buyerFirstName: string;
-  buyerWhatsapp: string;
-  delivery: "Livraison" | "Retrait";
-  address?: string;
-  amount: number;
-  payment: { method: "Mobile Money" | "Cash"; operator?: string; txn?: string };
-  status: "Nouvelle" | "En préparation" | "En livraison" | "En attente confirmation" | "Terminée" | "Annulée";
-  createdAt: string;
-  autoValidateAt?: string; // ISO countdown
-  receivedConfirmedAt?: string;
-  paymentReleasedAt?: string;
-  history: { ts: string; actor: string; label: string }[];
+export const DEPENSES: Depense[] = [
+  { id: "D-101", label: "150 plaques BA13 hydro", category: "Matériaux", amount: 1_275_000, chantierId: "CH-2026-014", date: day(-12) },
+  { id: "D-102", label: "Salaires semaine 07", category: "Main d'œuvre", amount: 890_000, chantierId: "CH-2026-014", date: day(-6) },
+  { id: "D-103", label: "Rails & montants 48mm", category: "Matériaux", amount: 640_000, chantierId: "CH-2026-011", date: day(-9) },
+  { id: "D-104", label: "Location nacelle 3j", category: "Divers", amount: 210_000, chantierId: "CH-2026-011", date: day(-4) },
+  { id: "D-105", label: "Transport camion Bonabéri", category: "Transport", amount: 95_000, chantierId: "CH-2026-014", date: day(-3) },
+  { id: "D-106", label: "Peinture premium 20 seaux", category: "Matériaux", amount: 1_120_000, chantierId: "CH-2026-011", date: day(-2) },
+  { id: "D-107", label: "Sous-traitance électricité", category: "Sous-traitance", amount: 750_000, chantierId: "CH-2026-014", date: day(-1) },
+];
+
+export type Facture = {
+  id: string; chantierId: string; client: string; amount: Currency;
+  status: "Brouillon" | "Envoyée" | "Partiellement payée" | "Payée" | "En retard";
+  issuedAt: string; dueAt: string; paid: Currency;
 };
 
-export type Refund = {
-  id: string;            // REF-2026-0007
-  orderId: string;
-  reason: string;
-  description: string;
-  photos: string[];
-  amount: number;
-  buyerFirstName: string;
-  buyerWhatsapp: string;
-  reportedAt: string;
-  status: "En attente" | "En cours" | "Remboursée";
-  triggeredAt?: string;
-  paidAt?: string;
-  confirmedAt?: string;
+export const FACTURES: Facture[] = [
+  { id: "F-2026-041", chantierId: "CH-2026-014", client: "Marie Tchoungui", amount: 8_000_000, status: "Payée", issuedAt: day(-40), dueAt: day(-25), paid: 8_000_000 },
+  { id: "F-2026-052", chantierId: "CH-2026-014", client: "Marie Tchoungui", amount: 8_000_000, status: "Partiellement payée", issuedAt: day(-14), dueAt: day(6), paid: 4_400_000 },
+  { id: "F-2026-046", chantierId: "CH-2026-011", client: "Wouri Trading SARL", amount: 17_000_000, status: "Payée", issuedAt: day(-60), dueAt: day(-45), paid: 17_000_000 },
+  { id: "F-2026-055", chantierId: "CH-2026-011", client: "Wouri Trading SARL", amount: 17_000_000, status: "En retard", issuedAt: day(-33), dueAt: day(-4), paid: 10_000_000 },
+  { id: "F-2026-038", chantierId: "CH-2026-009", client: "Le Fumoir SARL", amount: 15_200_000, status: "Payée", issuedAt: day(-120), dueAt: day(-100), paid: 15_200_000 },
+];
+
+export const CA_MENSUEL = [
+  { mois: "Sep", ca: 18_400_000, depenses: 12_100_000 },
+  { mois: "Oct", ca: 22_900_000, depenses: 15_300_000 },
+  { mois: "Nov", ca: 27_600_000, depenses: 18_800_000 },
+  { mois: "Déc", ca: 31_200_000, depenses: 20_400_000 },
+  { mois: "Jan", ca: 25_800_000, depenses: 17_600_000 },
+  { mois: "Fév", ca: 34_500_000, depenses: 22_900_000 },
+];
+
+// ── CRM ──
+export type Lead = {
+  id: string; name: string; phone: string; source: "Site web" | "WhatsApp" | "Recommandation" | "Terrain" | "Instagram";
+  need: string; budget: Currency; stage: "Nouveau" | "Contacté" | "Visite planifiée" | "Devis envoyé" | "Gagné" | "Perdu";
+  createdAt: string; nextAction?: string;
 };
 
-export type Alert = {
-  id: string;
-  level: "critical" | "warning" | "info";
-  message: string;
-  action: { to: string; label: string };
-  deadline?: string;
+export const LEADS: Lead[] = [
+  { id: "L-01", name: "Éric Fotso", phone: "+237 6 90 33 71 15", source: "Site web", need: "Faux plafond salon 120m²", budget: 9_600_000, stage: "Devis envoyé", createdAt: day(-8), nextAction: "Relance devis" },
+  { id: "L-02", name: "Immo Sawa", phone: "+237 6 71 45 66 21", source: "Recommandation", need: "Résidence 12 logements", budget: 61_000_000, stage: "Visite planifiée", createdAt: day(-5), nextAction: "Visite jeudi 10h" },
+  { id: "L-03", name: "Nadège Épée", phone: "+237 6 78 55 12 09", source: "Instagram", need: "Staff chambre parentale", budget: 2_400_000, stage: "Contacté", createdAt: day(-2) },
+  { id: "L-04", name: "Clinique Bonamoussadi", phone: "+237 6 99 87 65 43", source: "Terrain", need: "Cloisons coupe-feu 300m²", budget: 24_000_000, stage: "Nouveau", createdAt: day(-1) },
+  { id: "L-05", name: "Samuel Ndoumbe", phone: "+237 6 55 66 77 88", source: "WhatsApp", need: "Peinture duplex", budget: 3_800_000, stage: "Gagné", createdAt: day(-18) },
+  { id: "L-06", name: "Boutique Zen", phone: "+237 6 70 90 80 70", source: "Site web", need: "Béton ciré 60m²", budget: 4_200_000, stage: "Perdu", createdAt: day(-22) },
+];
+
+// ── Matériaux (calculateur) ──
+export const MATERIAUX_PRIX = {
+  plaqueBA13: 8_500,      // 1,20 × 2,50 m
+  plaqueHydro: 11_500,
+  rail: 2_800,            // 3 m
+  montant: 3_200,         // 3 m
+  visPaquet: 4_500,       // 1000 vis
+  enduitSac: 9_000,       // 25 kg
+  bandeRouleau: 2_500,    // 150 m
+  isolantM2: 3_400,
 };
 
-// ── Vendors ──
-export const vendors: Vendor[] = [
-  { id: "V001", firstName: "Aïcha", whatsapp: "+237 6 99 12 34 56", joinedAt: "2025-08-12", submissions: 14, sold: 11, revenue: 1_245_000, trust: 92, reports: 0, status: "Actif" },
-  { id: "V002", firstName: "Bertrand", whatsapp: "+237 6 77 22 33 44", joinedAt: "2025-09-04", submissions: 6, sold: 4, revenue: 420_000, trust: 78, reports: 1, status: "Actif" },
-  { id: "V003", firstName: "Clarisse", whatsapp: "+237 6 55 78 12 90", joinedAt: "2025-10-21", submissions: 3, sold: 2, revenue: 185_000, trust: 64, reports: 0, status: "Surveillance", note: "Photos parfois floues" },
-  { id: "V004", firstName: "Didier", whatsapp: "+237 6 90 45 67 88", joinedAt: "2025-11-15", submissions: 9, sold: 7, revenue: 980_000, trust: 88, reports: 0, status: "Actif" },
-  { id: "V005", firstName: "Esther", whatsapp: "+237 6 70 11 22 33", joinedAt: "2026-01-08", submissions: 2, sold: 1, revenue: 95_000, trust: 71, reports: 0, status: "Actif" },
-  { id: "V006", firstName: "Franck", whatsapp: "+237 6 91 44 55 66", joinedAt: "2026-02-19", submissions: 5, sold: 0, revenue: 0, trust: 41, reports: 2, status: "Surveillance", note: "Plusieurs annonces masquées auto" },
+export const TEAM = [
+  { name: "Ernest Priso", role: "Directeur général", initials: "EP" },
+  { name: "Alain Ngassa", role: "Chef de chantier senior", initials: "AN" },
+  { name: "Chantal Mbedé", role: "Architecte d'intérieur", initials: "CM" },
+  { name: "Patrick Etoa", role: "Chef de chantier", initials: "PE" },
 ];
 
-const ago = (h: number) => new Date(Date.now() - h * 3600_000).toISOString();
-const fwd = (h: number) => new Date(Date.now() + h * 3600_000).toISOString();
-
-// ── Submissions (pending review) ──
-export const submissions: Submission[] = [
-  {
-    id: "SUB-2026-0089", ref: "SUB-2026-0089", category: "Téléphones",
-    title: "iPhone 13 Pro 256Go bleu",
-    description: "iPhone 13 Pro 256Go, batterie 89%, débloqué tout opérateur. Pas de rayures. Boîte d'origine + chargeur.",
-    declaredCondition: "Très bon", minPrice: 320_000,
-    photos: [placeholder("iphone13a"), placeholder("iphone13b"), placeholder("iphone13c"), placeholder("iphone13d")],
-    proofPhoto: placeholder("proof89"), vendorId: "V001",
-    submittedAt: ago(26), status: "En attente", urgency: true, immediatePurchase: false,
-  },
-  {
-    id: "SUB-2026-0090", ref: "SUB-2026-0090", category: "Ordinateurs",
-    title: "MacBook Air M1 2020",
-    description: "MacBook Air M1 8Go/256Go gris sidéral. État excellent, peu servi. Très bonne autonomie.",
-    declaredCondition: "Très bon", minPrice: 420_000,
-    photos: [placeholder("macbook1"), placeholder("macbook2"), placeholder("macbook3")],
-    proofPhoto: placeholder("proof90"), vendorId: "V004",
-    submittedAt: ago(14), status: "En attente", urgency: false, immediatePurchase: true,
-  },
-  {
-    id: "SUB-2026-0091", ref: "SUB-2026-0091", category: "Vêtements",
-    title: "Veste cuir taille L",
-    description: "Veste en cuir véritable, taille L, portée 3 fois. Achetée à Paris.",
-    declaredCondition: "Très bon", minPrice: 45_000,
-    photos: [placeholder("veste1"), placeholder("veste2")],
-    vendorId: "V002",
-    submittedAt: ago(9), status: "En attente", urgency: false, immediatePurchase: false,
-  },
-  {
-    id: "SUB-2026-0092", ref: "SUB-2026-0092", category: "Électroménager",
-    title: "Réfrigérateur Samsung 2 portes",
-    description: "Frigo Samsung 350L, 2 portes, classe A++. 18 mois d'utilisation.",
-    declaredCondition: "Bon", minPrice: 210_000,
-    photos: [placeholder("frigo1"), placeholder("frigo2"), placeholder("frigo3")],
-    proofPhoto: placeholder("proof92"), vendorId: "V003",
-    submittedAt: ago(4), status: "En attente", urgency: false, immediatePurchase: false,
-  },
-  {
-    id: "SUB-2026-0093", ref: "SUB-2026-0093", category: "Accessoires",
-    title: "Sac à main cuir",
-    description: "Sac à main cuir noir, marque locale, état neuf.",
-    declaredCondition: "Neuf", minPrice: 28_000,
-    photos: [placeholder("sac1"), placeholder("sac2")],
-    vendorId: "V005",
-    submittedAt: ago(2), status: "En attente", urgency: false, immediatePurchase: false,
-  },
-  {
-    id: "SUB-2026-0094", ref: "SUB-2026-0094", category: "Meubles",
-    title: "Canapé d'angle 5 places",
-    description: "Canapé d'angle convertible, tissu gris foncé. 2 ans d'utilisation.",
-    declaredCondition: "Bon", minPrice: 180_000,
-    photos: [placeholder("canape1"), placeholder("canape2")],
-    vendorId: "V001",
-    submittedAt: ago(1), status: "En attente", urgency: false, immediatePurchase: true,
-  },
+export const TESTIMONIALS = [
+  { name: "Marie Tchoungui", role: "Villa Bonapriso", text: "Un travail de précision. Les délais ont été tenus au jour près et les finitions sont irréprochables.", rating: 5 },
+  { name: "Wouri Trading", role: "Siège social Akwa", text: "620 m² de bureaux livrés en 10 semaines sans interrompre notre activité. Équipe très professionnelle.", rating: 5 },
+  { name: "Le Fumoir", role: "Restaurant Bonanjo", text: "L'ambiance du restaurant a totalement changé. Le rendu du plafond noir et des LED est magnifique.", rating: 5 },
 ];
 
-// ── Catalogue (published / managed products) ──
-export const products: Product[] = [
-  {
-    id: "P-1001", submissionId: "SUB-2026-0080", title: "Samsung Galaxy S22 Ultra 256Go",
-    category: "Téléphones", condition: "Très bon", publicPrice: 285_000,
-    description: "Samsung Galaxy S22 Ultra 256Go noir, débloqué. Très bon état, pas de rayures.",
-    vendorId: "V001", photos: [placeholder("s22a"), placeholder("s22b")],
-    publishedAt: ago(72), status: "Publié", urgent: false, certified: true,
-    lastPingAt: ago(40), pingResponse: "OUI", daysWithoutResponse: 0,
-  },
-  {
-    id: "P-1002", submissionId: "SUB-2026-0081", title: "MacBook Pro 14\" M2 Pro 16/512",
-    category: "Ordinateurs", condition: "Très bon", publicPrice: 1_350_000,
-    description: "MacBook Pro 14 pouces M2 Pro, 16Go RAM, 512Go SSD. Acheté en 2023.",
-    vendorId: "V004", photos: [placeholder("mbpa"), placeholder("mbpb"), placeholder("mbpc")],
-    publishedAt: ago(120), status: "Publié", urgent: true, urgentUntil: fwd(48),
-    certified: false, lastPingAt: ago(15), pingResponse: "OUI", daysWithoutResponse: 0,
-  },
-  {
-    id: "P-1003", submissionId: "SUB-2026-0082", title: "Téléviseur LG OLED 55\"",
-    category: "Électroménager", condition: "Très bon", publicPrice: 520_000,
-    description: "TV LG OLED 55 pouces 4K HDR. Achat 2024, garantie valide.",
-    vendorId: "V002", photos: [placeholder("tv1"), placeholder("tv2")],
-    publishedAt: ago(240), status: "Publié", urgent: false, certified: true,
-    lastPingAt: ago(80), pingResponse: "OUI", daysWithoutResponse: 3,
-  },
-  {
-    id: "P-1004", submissionId: "SUB-2026-0083", title: "Vélo VTT électrique",
-    category: "Véhicules", condition: "Bon", publicPrice: 380_000,
-    description: "Vélo VTT électrique 27.5\", batterie 500Wh, autonomie 60km.",
-    vendorId: "V001", photos: [placeholder("vtt1"), placeholder("vtt2")],
-    publishedAt: ago(300), status: "Publié", urgent: false, certified: false,
-    lastPingAt: ago(180), pingResponse: "En attente", daysWithoutResponse: 8,
-  },
-  {
-    id: "P-1005", submissionId: "SUB-2026-0084", title: "Robe de soirée taille M",
-    category: "Vêtements", condition: "Neuf", publicPrice: 35_000,
-    description: "Robe de soirée neuve, étiquette présente, taille M.",
-    vendorId: "V005", photos: [placeholder("robe1")],
-    publishedAt: ago(48), status: "Publié", urgent: false, certified: false,
-    lastPingAt: ago(30), pingResponse: "OUI", daysWithoutResponse: 1,
-  },
-  {
-    id: "P-1006", submissionId: "SUB-2026-0085", title: "Tablette iPad Air 5e gen",
-    category: "Téléphones", condition: "Très bon", publicPrice: 295_000,
-    description: "iPad Air 5e génération 64Go Wi-Fi. Acheté en 2024.",
-    vendorId: "V004", photos: [placeholder("ipad1"), placeholder("ipad2")],
-    publishedAt: ago(96), status: "Vendu", urgent: false, certified: false,
-    lastPingAt: ago(96), pingResponse: "OUI", daysWithoutResponse: 0,
-  },
-  {
-    id: "P-1007", submissionId: "SUB-2026-0086", title: "Casque Sony WH-1000XM4",
-    category: "Accessoires", condition: "Très bon", publicPrice: 95_000,
-    description: "Casque sans fil à réduction de bruit Sony WH-1000XM4 noir.",
-    vendorId: "V002", photos: [placeholder("casque1")],
-    publishedAt: ago(60), status: "Publié", urgent: true, urgentUntil: fwd(24),
-    certified: false, lastPingAt: ago(20), pingResponse: "OUI", daysWithoutResponse: 0,
-  },
-  {
-    id: "P-1008", submissionId: "SUB-2026-0087", title: "Lit double + matelas",
-    category: "Meubles", condition: "Bon", publicPrice: 145_000,
-    description: "Lit 160x200 en bois + matelas mousse à mémoire de forme.",
-    vendorId: "V003", photos: [placeholder("lit1"), placeholder("lit2")],
-    publishedAt: ago(400), status: "Masqué", urgent: false, certified: false,
-    lastPingAt: ago(200), pingResponse: "NON", daysWithoutResponse: 9,
-  },
-  {
-    id: "P-1009", submissionId: "SUB-2026-0088", title: "Console PS5 Standard + 2 manettes",
-    category: "Accessoires", condition: "Très bon", publicPrice: 320_000,
-    description: "PS5 standard, 825Go, avec 2 manettes DualSense et 3 jeux.",
-    vendorId: "V001", photos: [placeholder("ps5a"), placeholder("ps5b")],
-    publishedAt: ago(8), status: "Publié", urgent: false, certified: true,
-    lastPingAt: ago(8), pingResponse: "OUI", daysWithoutResponse: 0,
-  },
-  {
-    id: "P-1010", submissionId: "SUB-2026-0089a", title: "Machine à laver Bosch 8kg",
-    category: "Électroménager", condition: "Bon", publicPrice: 240_000,
-    description: "Machine à laver Bosch 8kg, classe A+++. 3 ans d'âge.",
-    vendorId: "V004", photos: [placeholder("ml1")],
-    publishedAt: ago(150), status: "Publié", urgent: false, certified: false,
-    lastPingAt: ago(60), pingResponse: "OUI", daysWithoutResponse: 2,
-  },
-  {
-    id: "P-1011", submissionId: "SUB-2026-0090a", title: "Sneakers Nike Air Max 90",
-    category: "Vêtements", condition: "Très bon", publicPrice: 42_000,
-    description: "Nike Air Max 90 taille 42, peu portées.",
-    vendorId: "V002", photos: [placeholder("nike1")],
-    publishedAt: ago(20), status: "Publié", urgent: false, certified: false,
-    lastPingAt: ago(10), pingResponse: "OUI", daysWithoutResponse: 0,
-  },
-  {
-    id: "P-1012", submissionId: "SUB-2026-0091a", title: "Aspirateur Dyson V11",
-    category: "Électroménager", condition: "Très bon", publicPrice: 175_000,
-    description: "Aspirateur balai Dyson V11 sans fil. Accessoires complets.",
-    vendorId: "V005", photos: [placeholder("dyson1")],
-    publishedAt: ago(35), status: "Publié", urgent: false, certified: false,
-    lastPingAt: ago(15), pingResponse: "OUI", daysWithoutResponse: 0,
-  },
-  {
-    id: "P-1013", submissionId: "SUB-2026-0092a", title: "Table à manger bois massif",
-    category: "Meubles", condition: "Bon", publicPrice: 220_000,
-    description: "Table à manger 6 places en bois massif. Patine d'usage.",
-    vendorId: "V003", photos: [placeholder("table1")],
-    publishedAt: ago(500), status: "Masqué", urgent: false, certified: false,
-    lastPingAt: ago(220), pingResponse: "NON", daysWithoutResponse: 10,
-  },
-  {
-    id: "P-1014", submissionId: "SUB-2026-0093a", title: "Apple Watch Series 8 45mm",
-    category: "Téléphones", condition: "Très bon", publicPrice: 195_000,
-    description: "Apple Watch Series 8 GPS 45mm, bracelet sport.",
-    vendorId: "V001", photos: [placeholder("aw1")],
-    publishedAt: ago(12), status: "Publié", urgent: false, certified: false,
-    lastPingAt: ago(12), pingResponse: "OUI", daysWithoutResponse: 0,
-  },
-  {
-    id: "P-1015", submissionId: "SUB-2026-0094a", title: "Cafetière Nespresso Vertuo",
-    category: "Électroménager", condition: "Neuf", publicPrice: 78_000,
-    description: "Cafetière Nespresso Vertuo neuve, sous garantie.",
-    vendorId: "V004", photos: [placeholder("nespresso1")],
-    publishedAt: ago(5), status: "Publié", urgent: false, certified: true,
-    lastPingAt: ago(5), pingResponse: "En attente", daysWithoutResponse: 1,
-  },
+export const STATS = [
+  { label: "Chantiers livrés", value: "180+" },
+  { label: "Années d'expérience", value: "12" },
+  { label: "m² réalisés", value: "42 000" },
+  { label: "Clients satisfaits", value: "98 %" },
 ];
-
-// ── Orders ──
-export const orders: Order[] = [
-  {
-    id: "VD-2026-0031", productId: "P-1001",
-    buyerFirstName: "Marc", buyerWhatsapp: "+237 6 98 33 44 55",
-    delivery: "Livraison", address: "Bonapriso, rue Joffre n°14, Douala",
-    amount: 285_000, payment: { method: "Mobile Money", operator: "MTN MoMo", txn: "MP260603.1442.A04567" },
-    status: "En attente confirmation", createdAt: ago(48), autoValidateAt: fwd(0.78),
-    receivedConfirmedAt: undefined,
-    history: [
-      { ts: ago(48), actor: "Système", label: "Commande créée" },
-      { ts: ago(46), actor: "Admin", label: "Passée en préparation" },
-      { ts: ago(20), actor: "Admin", label: "Passée en livraison" },
-      { ts: ago(2), actor: "Coursier", label: "Marquée livrée" },
-    ],
-  },
-  {
-    id: "VD-2026-0032", productId: "P-1002",
-    buyerFirstName: "Yolande", buyerWhatsapp: "+237 6 70 22 11 88",
-    delivery: "Retrait", amount: 1_350_000,
-    payment: { method: "Mobile Money", operator: "Orange Money", txn: "OM260603.0921.778801" },
-    status: "Nouvelle", createdAt: ago(3),
-    history: [{ ts: ago(3), actor: "Système", label: "Commande créée" }],
-  },
-  {
-    id: "VD-2026-0033", productId: "P-1003",
-    buyerFirstName: "Junior", buyerWhatsapp: "+237 6 55 99 12 22",
-    delivery: "Livraison", address: "Akwa, av. de Gaulle 12, Douala",
-    amount: 520_000, payment: { method: "Cash" },
-    status: "En préparation", createdAt: ago(14),
-    history: [
-      { ts: ago(14), actor: "Système", label: "Commande créée" },
-      { ts: ago(12), actor: "Admin", label: "Passée en préparation" },
-    ],
-  },
-  {
-    id: "VD-2026-0034", productId: "P-1007",
-    buyerFirstName: "Linda", buyerWhatsapp: "+237 6 70 44 55 66",
-    delivery: "Livraison", address: "Bonanjo, rue Pasteur 4, Douala",
-    amount: 95_000, payment: { method: "Mobile Money", operator: "MTN MoMo", txn: "MP260602.1804.B11220" },
-    status: "En livraison", createdAt: ago(28),
-    history: [
-      { ts: ago(28), actor: "Système", label: "Commande créée" },
-      { ts: ago(25), actor: "Admin", label: "Passée en préparation" },
-      { ts: ago(10), actor: "Admin", label: "Passée en livraison" },
-    ],
-  },
-  {
-    id: "VD-2026-0035", productId: "P-1009",
-    buyerFirstName: "Patrick", buyerWhatsapp: "+237 6 99 12 88 33",
-    delivery: "Retrait", amount: 320_000,
-    payment: { method: "Mobile Money", operator: "Orange Money", txn: "OM260601.1011.221199" },
-    status: "Terminée", createdAt: ago(120),
-    receivedConfirmedAt: ago(96), paymentReleasedAt: ago(94),
-    history: [
-      { ts: ago(120), actor: "Système", label: "Commande créée" },
-      { ts: ago(110), actor: "Admin", label: "Passée en préparation" },
-      { ts: ago(100), actor: "Admin", label: "Prêt pour retrait" },
-      { ts: ago(96), actor: "Acheteur", label: "Réception confirmée" },
-      { ts: ago(94), actor: "Admin", label: "Paiement libéré · MP260603.0844" },
-    ],
-  },
-  {
-    id: "VD-2026-0036", productId: "P-1011",
-    buyerFirstName: "Stéphanie", buyerWhatsapp: "+237 6 70 88 22 11",
-    delivery: "Livraison", address: "Bali, rue 1.234, Douala",
-    amount: 42_000, payment: { method: "Cash" },
-    status: "Nouvelle", createdAt: ago(1),
-    history: [{ ts: ago(1), actor: "Système", label: "Commande créée" }],
-  },
-  {
-    id: "VD-2026-0037", productId: "P-1014",
-    buyerFirstName: "Olivier", buyerWhatsapp: "+237 6 99 55 77 88",
-    delivery: "Livraison", address: "Logbessou, Douala",
-    amount: 195_000, payment: { method: "Mobile Money", operator: "MTN MoMo", txn: "MP260603.0712.C33402" },
-    status: "En préparation", createdAt: ago(6),
-    history: [
-      { ts: ago(6), actor: "Système", label: "Commande créée" },
-      { ts: ago(4), actor: "Admin", label: "Passée en préparation" },
-    ],
-  },
-  {
-    id: "VD-2026-0038", productId: "P-1012",
-    buyerFirstName: "Eric", buyerWhatsapp: "+237 6 91 22 33 44",
-    delivery: "Livraison", address: "Makepe, Douala",
-    amount: 175_000, payment: { method: "Mobile Money", operator: "Orange Money", txn: "OM260603.1100.998877" },
-    status: "Annulée", createdAt: ago(72),
-    history: [
-      { ts: ago(72), actor: "Système", label: "Commande créée" },
-      { ts: ago(70), actor: "Acheteur", label: "Annulation demandée" },
-      { ts: ago(69), actor: "Admin", label: "Commande annulée" },
-    ],
-  },
-];
-
-// ── Refunds ──
-export const refunds: Refund[] = [
-  {
-    id: "REF-2026-0007", orderId: "VD-2026-0028", reason: "Produit non conforme",
-    description: "Le téléphone reçu présente des rayures non mentionnées et la batterie tient mal.",
-    photos: [placeholder("refund1"), placeholder("refund2")],
-    amount: 180_000, buyerFirstName: "Carine", buyerWhatsapp: "+237 6 70 14 22 89",
-    reportedAt: ago(36), status: "En attente",
-  },
-  {
-    id: "REF-2026-0008", orderId: "VD-2026-0030", reason: "Article jamais reçu",
-    description: "Commande passée il y a 6 jours, jamais livrée malgré relances.",
-    photos: [],
-    amount: 45_000, buyerFirstName: "Roland", buyerWhatsapp: "+237 6 99 02 03 04",
-    reportedAt: ago(72), status: "En cours", triggeredAt: ago(24),
-  },
-  {
-    id: "REF-2026-0009", orderId: "VD-2026-0025", reason: "Produit défectueux",
-    description: "L'appareil ne s'allume pas à la réception.",
-    photos: [placeholder("refund3")],
-    amount: 95_000, buyerFirstName: "Diane", buyerWhatsapp: "+237 6 70 88 99 11",
-    reportedAt: ago(240), status: "Remboursée",
-    triggeredAt: ago(220), paidAt: ago(210), confirmedAt: ago(180),
-  },
-];
-
-// ── Alerts ──
-export const alerts: Alert[] = [
-  { id: "A1", level: "critical", message: "Commande VD-2026-0031 : validation automatique dans 00h47", action: { to: "/orders/VD-2026-0031", label: "Gérer" }, deadline: fwd(0.78) },
-  { id: "A2", level: "warning", message: "Soumission SUB-2026-0089 en attente depuis 26h", action: { to: "/submissions/SUB-2026-0089", label: "Examiner" } },
-  { id: "A3", level: "warning", message: "Produit \"Lit double + matelas\" masqué automatiquement — vendeur sans réponse 7 jours", action: { to: "/deliveries", label: "Voir pings" } },
-  { id: "A4", level: "info", message: "3 pings de disponibilité sans réponse", action: { to: "/deliveries", label: "Vérifier" } },
-];
-
-// helpers
-export const findVendor = (id: string) => vendors.find(v => v.id === id);
-export const findProduct = (id: string) => products.find(p => p.id === id);
-export const findSubmission = (id: string) => submissions.find(s => s.id === id);
-export const findOrder = (id: string) => orders.find(o => o.id === id);
-export const findRefund = (id: string) => refunds.find(r => r.id === id);
-
-// Financial events (last 30 days, synthetic)
-export type FinEvent = {
-  date: string; type: "Commission" | "Achat direct" | "Remboursement";
-  productTitle: string; vendorFirstName: string;
-  gross: number; commission: number; net: number;
-};
-
-export const finEvents: FinEvent[] = (() => {
-  const out: FinEvent[] = [];
-  const titles = products.map(p => ({ t: p.title, c: p.category, price: p.publicPrice, v: vendors.find(v => v.id === p.vendorId)?.firstName ?? "—" }));
-  for (let i = 0; i < 42; i++) {
-    const day = new Date(Date.now() - Math.floor(Math.random() * 30) * 86400000);
-    const t = titles[i % titles.length];
-    const type: FinEvent["type"] = i % 11 === 0 ? "Remboursement" : i % 7 === 0 ? "Achat direct" : "Commission";
-    const rate = type === "Achat direct" ? 0.25 : 0.1;
-    const gross = type === "Remboursement" ? -t.price : t.price;
-    const commission = Math.round(gross * rate);
-    out.push({
-      date: day.toISOString(), type,
-      productTitle: t.t, vendorFirstName: t.v,
-      gross, commission, net: type === "Remboursement" ? gross : commission,
-    });
-  }
-  return out.sort((a, b) => b.date.localeCompare(a.date));
-})();
