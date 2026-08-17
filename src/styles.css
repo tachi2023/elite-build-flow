@@ -8,14 +8,14 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 6px);
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-surface-1: var(--surface-1);
+  --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --color-surface-3: var(--surface-3);
 
@@ -35,12 +35,12 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
 
-  --color-blue: var(--blue);
-  --color-purple: var(--purple);
-  --color-orange: var(--orange);
-  --color-teal: var(--teal);
-  --color-red: var(--red);
-  --color-yellow: var(--yellow);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-danger: var(--danger);
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -62,86 +62,105 @@
   --color-chart-5: var(--chart-5);
 }
 
-/* VraiDeal Admin — deep dark ops palette */
+/* Élite Placo & Déco — Luxury dark (charcoal & gold) */
 :root {
-  --radius: 0.5rem;
+  --radius: 0.375rem;
 
-  --background: #0F1117;
-  --foreground: #E8E8F0;
+  --background: #1e1e1e;
+  --foreground: #f5f5f5;
 
-  --surface-1: #1A1D27;
-  --surface-2: #21253A;
-  --surface-3: #2A2F45;
+  --surface: #272727;
+  --surface-2: #303030;
+  --surface-3: #3a3a3a;
 
-  --card: #1A1D27;
-  --card-foreground: #E8E8F0;
-  --popover: #21253A;
-  --popover-foreground: #E8E8F0;
+  --card: #272727;
+  --card-foreground: #f5f5f5;
+  --popover: #272727;
+  --popover-foreground: #f5f5f5;
 
-  --primary: #4F7FFF;
-  --primary-foreground: #0F1117;
-
-  --secondary: #21253A;
-  --secondary-foreground: #E8E8F0;
-  --muted: #21253A;
-  --muted-foreground: rgba(232, 232, 240, 0.55);
-  --accent: #2A2F45;
-  --accent-foreground: #E8E8F0;
-
-  --destructive: #FF3355;
+  --primary: #c9a84c;
+  --primary-foreground: #1a1a1a;
+  --secondary: #303030;
+  --secondary-foreground: #f5f5f5;
+  --muted: #303030;
+  --muted-foreground: #a3a3a3;
+  --accent: #3a3a3a;
+  --accent-foreground: #f5f5f5;
+  --destructive: #e05252;
   --destructive-foreground: #ffffff;
 
-  --blue: #4F7FFF;
-  --purple: #7C5CFC;
-  --orange: #FF6B2B;
-  --teal: #00D4AA;
-  --red: #FF3355;
-  --yellow: #FFD60A;
+  --gold: #c9a84c;
+  --gold-soft: #e2c98a;
+  --success: #4caf7d;
+  --warning: #e0a33e;
+  --info: #5b9bd5;
+  --danger: #e05252;
 
-  --border: rgba(124, 92, 252, 0.12);
-  --input: rgba(124, 92, 252, 0.18);
-  --ring: rgba(79, 127, 255, 0.6);
+  --border: #383838;
+  --input: #3a3a3a;
+  --ring: #c9a84c;
 
-  --chart-1: #4F7FFF;
-  --chart-2: #00D4AA;
-  --chart-3: #7C5CFC;
-  --chart-4: #FF6B2B;
-  --chart-5: #FFD60A;
+  --sidebar: #232323;
+  --sidebar-foreground: #e8e8e8;
+  --sidebar-primary: #c9a84c;
+  --sidebar-primary-foreground: #1a1a1a;
+  --sidebar-accent: #303030;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: #383838;
+  --sidebar-ring: #c9a84c;
 
-  --sidebar: #1A1D27;
-  --sidebar-foreground: #E8E8F0;
-  --sidebar-primary: #4F7FFF;
-  --sidebar-primary-foreground: #0F1117;
-  --sidebar-accent: #21253A;
-  --sidebar-accent-foreground: #E8E8F0;
-  --sidebar-border: rgba(124, 92, 252, 0.12);
-  --sidebar-ring: rgba(79, 127, 255, 0.5);
+  --chart-1: #c9a84c;
+  --chart-2: #4caf7d;
+  --chart-3: #5b9bd5;
+  --chart-4: #e0a33e;
+  --chart-5: #a37fd6;
 }
 
-.dark { color-scheme: dark; }
-
-@layer base {
-  * { border-color: var(--color-border); }
-  html { color-scheme: dark; }
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
-    -webkit-font-smoothing: antialiased;
-    font-weight: 400;
-  }
-  h1, h2, h3, h4, h5 { font-weight: 600; letter-spacing: -0.01em; }
-  code, kbd, .font-mono { font-family: var(--font-mono); }
+* {
+  border-color: var(--border);
 }
 
-@utility surface-1 { background-color: var(--color-surface-1); }
-@utility surface-2 { background-color: var(--color-surface-2); }
-@utility surface-3 { background-color: var(--color-surface-3); }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
 
-@utility hover-row {
-  transition: background-color 150ms ease;
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
 }
-@utility hover-row:hover {
-  background-color: var(--color-surface-3);
+
+@utility gold-gradient {
+  background-image: linear-gradient(120deg, #b8933b 0%, #e2c98a 45%, #c9a84c 100%);
 }
+
+@utility gold-text {
+  background-image: linear-gradient(120deg, #c9a84c 0%, #e2c98a 60%, #b8933b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility card-elevated {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.9);
+}
+
+@utility hairline {
+  border-bottom: 1px solid var(--border);
+}
+
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1200px;
+  padding-inline: 1.25rem;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #4a4a4a; }
