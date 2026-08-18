@@ -1,138 +1,122 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Star, Check, Phone } from "lucide-react";
-
-import { SiteHeader } from "@/components/site/header";
-import { SiteFooter } from "@/components/site/footer";
-import { SERVICES, REALISATIONS, STATS, TESTIMONIALS, TEAM } from "@/lib/mock";
-import { fcfa } from "@/lib/format";
-
-const TITLE = "Élite Placo & Déco | PRIMA BTP — Plâtrerie & décoration à Douala";
-const DESC =
-  "Cloisons, faux plafonds décoratifs, staff, peinture et design d'intérieur haut de gamme à Douala. Devis gratuit sous 48 h.";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Sparkles, Ruler, Hammer, Star, ShieldCheck, Phone } from "lucide-react";
+import hero from "@/assets/hero-plaster.jpg";
+import p1 from "@/assets/project-1.jpg";
+import p2 from "@/assets/project-2.jpg";
+import p3 from "@/assets/project-3.jpg";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: TITLE },
-      { name: "description", content: DESC },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESC },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { title: "Élite Placo & Déco | PRIMA BTP — Plâtrerie & Décoration de luxe à Douala" },
+      { name: "description", content: "Plafonds décoratifs, faux plafonds BA13, habillage mural et décoration intérieure haut de gamme à Douala et au Cameroun." },
+      { property: "og:title", content: "Élite Placo & Déco | PRIMA BTP" },
+      { property: "og:description", content: "L'excellence du plâtre, l'art de la décoration." },
+      { property: "og:image", content: hero },
     ],
   }),
-  component: HomePage,
+  component: Home,
 });
 
-const PROCESS = [
-  { n: "01", t: "Prise de contact", d: "Un échange de 15 minutes pour cerner votre besoin, vos délais et votre budget." },
-  { n: "02", t: "Visite & métrés", d: "Relevé précis sur site par un chef de chantier, photos et contraintes techniques." },
-  { n: "03", t: "Devis détaillé", d: "Chiffrage ligne par ligne, matériaux et main d'œuvre, transmis sous 48 heures." },
-  { n: "04", t: "Réalisation", d: "Équipe dédiée, planning affiché, reporting photo hebdomadaire sur votre espace client." },
-  { n: "05", t: "Réception", d: "Levée des réserves, nettoyage complet et garantie de 2 ans sur les finitions." },
-];
-
-function HomePage() {
+function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <SiteHeader />
+      <SiteNav />
 
-      {/* Hero */}
+      {/* HERO */}
       <section className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-25"
-          style={{ backgroundImage: "url(https://picsum.photos/seed/elite-hero-luxe/1920/1080)" }}
-          aria-hidden
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" aria-hidden />
-        <div className="container-x relative py-24 md:py-36">
-          <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-4 py-1.5 text-[11px] uppercase tracking-[0.22em] text-gold">
-            Groupe PRIMA BTP · Douala
-          </span>
-          <h1 className="mt-7 max-w-3xl font-display text-4xl leading-[1.1] font-semibold md:text-6xl">
-            L'art du plâtre et de la <span className="gold-text">décoration d'exception</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Cloisons, faux plafonds, staff décoratif et finitions premium. Depuis 12 ans,
-            nous transformons villas, bureaux et espaces commerciaux à Douala.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-md gold-gradient px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90">
-              Demander un devis gratuit <ArrowRight className="h-4 w-4" />
-            </a>
-            <a href="#realisations" className="inline-flex items-center gap-2 rounded-md border border-border bg-surface/70 px-6 py-3 text-sm font-medium transition-colors hover:bg-surface-2">
-              Voir nos réalisations
-            </a>
-          </div>
-
-          <div className="mt-16 grid max-w-3xl grid-cols-2 gap-6 md:grid-cols-4">
-            {STATS.map((s) => (
-              <div key={s.label}>
-                <div className="font-display text-3xl font-semibold gold-text">{s.value}</div>
-                <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{s.label}</div>
-              </div>
-            ))}
+        <div className="absolute inset-0">
+          <img src={hero} alt="Salon décoré avec plafond en plâtre orné, corniches et spots LED dorés" width={1920} height={1080} className="h-full w-full object-cover opacity-50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/70 to-background" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-2 rounded-full hairline-gold bg-background/40 px-3 py-1 text-xs uppercase tracking-widest text-gold backdrop-blur">
+              <Sparkles size={12} /> Douala · Cameroun
+            </span>
+            <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
+              L'excellence du plâtre,
+              <br />
+              <span className="gold-text">l'art de la décoration.</span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
+              Plafonds décoratifs, faux plafonds BA13, habillage mural et finitions
+              intérieures de prestige pour villas, hôtels et bureaux haut de gamme.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/contact" className="inline-flex items-center gap-2 rounded-md gold-gradient px-5 py-3 text-sm font-semibold text-background shadow-[0_12px_30px_-12px_var(--color-gold)] transition hover:brightness-110">
+                Demander un devis gratuit <ArrowRight size={16} />
+              </Link>
+              <Link to="/realisations" className="inline-flex items-center gap-2 rounded-md hairline-gold px-5 py-3 text-sm font-semibold text-gold backdrop-blur transition hover:bg-gold-soft">
+                Voir nos réalisations
+              </Link>
+            </div>
+            <dl className="mt-12 grid max-w-2xl grid-cols-3 gap-4">
+              {[
+                { v: "12+", l: "années d'expérience" },
+                { v: "180+", l: "projets livrés" },
+                { v: "98%", l: "clients satisfaits" },
+              ].map((s) => (
+                <div key={s.l} className="rounded-lg hairline-gold bg-surface/60 p-4 backdrop-blur">
+                  <dt className="font-display text-2xl font-semibold text-gold sm:text-3xl">{s.v}</dt>
+                  <dd className="text-xs uppercase tracking-wider text-muted-foreground">{s.l}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section id="services" className="container-x scroll-mt-20 py-20 md:py-28">
-        <div className="max-w-2xl">
-          <span className="text-xs uppercase tracking-[0.22em] text-gold">Nos services</span>
-          <h2 className="mt-3 font-display text-3xl font-semibold md:text-4xl">Un savoir-faire complet, du gros œuvre à la finition</h2>
+      {/* SERVICES */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mb-12 max-w-2xl">
+          <p className="text-xs uppercase tracking-widest text-gold">Nos savoir-faire</p>
+          <h2 className="mt-2 font-display text-3xl font-semibold sm:text-4xl">
+            Une exécution irréprochable, du plafond au moindre détail.
+          </h2>
         </div>
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s) => (
-            <article key={s.id} className="card-elevated group p-6 transition-colors hover:border-gold/50">
-              <h3 className="font-display text-lg font-semibold">{s.title}</h3>
-              <p className="mt-1 text-xs uppercase tracking-wider text-gold">{s.tagline}</p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{s.description}</p>
-              <ul className="mt-5 space-y-2">
-                {s.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-2 text-sm text-foreground/80">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" /> {b}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6 border-t border-border pt-4 text-sm text-muted-foreground">
-                {s.from > 0 ? <>À partir de <span className="font-medium text-foreground">{fcfa(s.from)}</span> / m²</> : "Sur devis"}
-              </div>
-            </article>
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            { i: Ruler, t: "Plafonds décoratifs", d: "Corniches, rosaces, moulures et bandeaux LED sur-mesure." },
+            { i: Hammer, t: "Faux plafonds BA13", d: "Cornière + fourrure ou rails + montants selon votre projet." },
+            { i: Star, t: "Décoration intérieure", d: "Habillage mural, finitions et conseil d'aménagement." },
+          ].map((s) => (
+            <div key={s.t} className="card-elevated rounded-xl p-6 transition hover:-translate-y-1 hover:border-gold/40">
+              <span className="grid h-11 w-11 place-items-center rounded-md bg-gold-soft">
+                <s.i size={18} className="text-gold" />
+              </span>
+              <h3 className="mt-5 font-display text-xl font-semibold">{s.t}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* Réalisations */}
-      <section id="realisations" className="scroll-mt-20 border-y border-border bg-surface/40 py-20 md:py-28">
-        <div className="container-x">
-          <div className="max-w-2xl">
-            <span className="text-xs uppercase tracking-[0.22em] text-gold">Réalisations</span>
-            <h2 className="mt-3 font-display text-3xl font-semibold md:text-4xl">Nos derniers chantiers livrés</h2>
+      {/* REALISATIONS */}
+      <section className="bg-surface/40 py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-xs uppercase tracking-widest text-gold">Réalisations</p>
+              <h2 className="mt-2 font-display text-3xl font-semibold sm:text-4xl">Quelques chantiers signés Élite.</h2>
+            </div>
+            <Link to="/realisations" className="text-sm font-medium text-gold hover:underline">Voir tout →</Link>
           </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {REALISATIONS.map((r) => (
-              <article key={r.id} className="card-elevated overflow-hidden">
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              { img: p1, t: "Villa Mbeng — Bonapriso", d: "Corniches ornées + spots dorés" },
+              { img: p2, t: "Duplex Akwa — LED", d: "Faux plafond BA13 lumineux" },
+              { img: p3, t: "Hôtel Akwa Palace", d: "Habillage mural lobby" },
+            ].map((r) => (
+              <article key={r.t} className="group overflow-hidden rounded-xl card-elevated">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={r.cover}
-                    alt={`${r.title} — ${r.category} à ${r.location}`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
+                  <img src={r.img} alt={r.t} loading="lazy" width={1024} height={768} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                 </div>
                 <div className="p-5">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="rounded-full border border-gold/40 px-2.5 py-1 text-gold">{r.category}</span>
-                    <span className="text-muted-foreground">{r.year}</span>
-                  </div>
-                  <h3 className="mt-3 font-display text-lg font-semibold">{r.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.description}</p>
-                  <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-xs text-muted-foreground">
-                    <span>{r.location}</span>
-                    <span>{r.surface} m²</span>
-                    <span>{r.duration}</span>
-                  </div>
+                  <h3 className="font-display text-lg font-semibold">{r.t}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{r.d}</p>
                 </div>
               </article>
             ))}
@@ -140,106 +124,37 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Processus */}
-      <section id="processus" className="container-x scroll-mt-20 py-20 md:py-28">
-        <div className="max-w-2xl">
-          <span className="text-xs uppercase tracking-[0.22em] text-gold">Méthode</span>
-          <h2 className="mt-3 font-display text-3xl font-semibold md:text-4xl">Cinq étapes, zéro mauvaise surprise</h2>
-        </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3 lg:grid-cols-5">
-          {PROCESS.map((p) => (
-            <div key={p.n} className="border-t border-gold/40 pt-5">
-              <div className="font-display text-2xl font-semibold gold-text">{p.n}</div>
-              <h3 className="mt-2 text-base font-semibold">{p.t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
+      {/* TRUST */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="card-elevated grid gap-8 rounded-2xl p-8 md:grid-cols-3 md:p-12">
+          {[
+            { i: ShieldCheck, t: "Garantie 2 ans", d: "Sur toutes nos finitions plâtrerie." },
+            { i: Sparkles, t: "Matériaux premium", d: "BA13 certifiés et profilés galvanisés." },
+            { i: Phone, t: "Suivi temps réel", d: "Vous recevez photos et avancements via WhatsApp." },
+          ].map((b) => (
+            <div key={b.t} className="flex items-start gap-4">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md gold-gradient text-background">
+                <b.i size={18} />
+              </span>
+              <div>
+                <h3 className="font-display text-lg font-semibold">{b.t}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{b.d}</p>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Témoignages + équipe */}
-      <section className="border-y border-border bg-surface/40 py-20 md:py-28">
-        <div className="container-x grid gap-14 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <span className="text-xs uppercase tracking-[0.22em] text-gold">Ils nous font confiance</span>
-            <div className="mt-8 space-y-5">
-              {TESTIMONIALS.map((t) => (
-                <blockquote key={t.name} className="card-elevated p-6">
-                  <div className="flex gap-1">
-                    {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-gold text-gold" />
-                    ))}
-                  </div>
-                  <p className="mt-4 text-sm leading-relaxed text-foreground/90">« {t.text} »</p>
-                  <footer className="mt-4 text-xs text-muted-foreground">
-                    <span className="font-medium text-foreground">{t.name}</span> — {t.role}
-                  </footer>
-                </blockquote>
-              ))}
-            </div>
-          </div>
-          <div>
-            <span className="text-xs uppercase tracking-[0.22em] text-gold">L'équipe</span>
-            <div className="mt-8 space-y-3">
-              {TEAM.map((m) => (
-                <div key={m.name} className="flex items-center gap-4 rounded-lg border border-border bg-surface p-4">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold/40 font-display text-sm text-gold">
-                    {m.initials}
-                  </span>
-                  <div>
-                    <div className="text-sm font-medium">{m.name}</div>
-                    <div className="text-xs text-muted-foreground">{m.role}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="container-x scroll-mt-20 py-20 md:py-28">
-        <div className="card-elevated grid gap-10 p-8 md:grid-cols-2 md:p-12">
-          <div>
-            <span className="text-xs uppercase tracking-[0.22em] text-gold">Contact</span>
-            <h2 className="mt-3 font-display text-3xl font-semibold">Parlons de votre projet</h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Décrivez votre besoin : nous vous rappelons sous 24 h et vous transmettons
-              un devis détaillé sous 48 h après la visite technique.
-            </p>
-            <a
-              href="tel:+237699412208"
-              className="mt-8 inline-flex items-center gap-2 rounded-md border border-gold/50 px-5 py-3 text-sm font-medium text-gold transition-colors hover:bg-gold/10"
-            >
-              <Phone className="h-4 w-4" /> +237 6 99 41 22 08
-            </a>
-          </div>
-
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="block text-sm">
-                <span className="text-muted-foreground">Nom complet</span>
-                <input className="mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-gold" placeholder="Marie Tchoungui" />
-              </label>
-              <label className="block text-sm">
-                <span className="text-muted-foreground">Téléphone</span>
-                <input className="mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-gold" placeholder="+237 6 …" />
-              </label>
-            </div>
-            <label className="block text-sm">
-              <span className="text-muted-foreground">Type de projet</span>
-              <select className="mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-gold">
-                {SERVICES.map((s) => <option key={s.id}>{s.title}</option>)}
-              </select>
-            </label>
-            <label className="block text-sm">
-              <span className="text-muted-foreground">Votre message</span>
-              <textarea rows={4} className="mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-gold" placeholder="Surface, localisation, délai souhaité…" />
-            </label>
-            <button className="w-full rounded-md gold-gradient px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90">
-              Envoyer ma demande
-            </button>
-          </form>
+      {/* CTA */}
+      <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-2xl gold-gradient p-10 text-background md:p-14">
+          <h2 className="font-display text-3xl font-semibold sm:text-4xl">Un projet en tête ?</h2>
+          <p className="mt-3 max-w-xl text-sm opacity-80 sm:text-base">
+            Recevez un devis personnalisé en 24h — devis et conseil gratuits.
+          </p>
+          <Link to="/contact" className="mt-6 inline-flex items-center gap-2 rounded-md bg-background px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-surface">
+            Lancer ma demande <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 
